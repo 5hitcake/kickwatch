@@ -1,0 +1,18 @@
+{
+  "name": "KickWatch",
+  "short_name": "KickWatch",
+  "description": "Deine Lieblingsvereine weltweit – Anstoßzeiten in deiner Zeitzone und wo du zuschauen kannst.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0f14",
+  "theme_color": "#0b0f14",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
