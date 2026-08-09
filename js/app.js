@@ -76,17 +76,28 @@ async function addFavorite(team) {
   await saveFavoriteTeams(currentUid, favoriteTeams);
 }
 
+let currentSuggestions = [];
+
 addFavoriteForm.addEventListener("submit", async (event) => {
   event.preventDefault();
+  // Bei offener Vorschlagsliste zaehlt der erste (beste) Treffer statt des
+  // rohen Tippfehler-anfaelligen Texts - verhindert doppelte/uneinheitliche
+  // Eintraege, wenn per Tastatur-Enter statt per Antippen bestaetigt wird.
+  if (currentSuggestions.length) {
+    await addFavorite(currentSuggestions[0].name);
+    return;
+  }
   await addFavorite(addFavoriteInput.value.trim());
 });
 
 function hideSuggestions() {
+  currentSuggestions = [];
   favoriteSuggestions.hidden = true;
   favoriteSuggestions.innerHTML = "";
 }
 
 function renderSuggestions(teams) {
+  currentSuggestions = teams;
   if (!teams.length) {
     hideSuggestions();
     return;
