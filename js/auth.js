@@ -21,10 +21,16 @@ export function initAuthUI({ onLogin, onLogout }) {
   const emailForm = document.getElementById("email-signin-form");
   const emailInput = document.getElementById("email-signin-input");
   const emailStatus = document.getElementById("email-signin-status");
+  const authError = document.getElementById("auth-error");
   const logoutBtn = document.getElementById("logout-btn");
 
   googleBtn.addEventListener("click", async () => {
-    await signInWithRedirect(auth, googleProvider);
+    authError.textContent = "";
+    try {
+      await signInWithRedirect(auth, googleProvider);
+    } catch (err) {
+      authError.textContent = `Fehler beim Weiterleiten zu Google: ${err.code || ""} ${err.message}`;
+    }
   });
 
   emailForm.addEventListener("submit", async (event) => {
@@ -56,14 +62,22 @@ export function initAuthUI({ onLogin, onLogout }) {
     }
   });
 
-  completeEmailLinkSignInIfNeeded();
-  // Faengt Fehler aus dem Google-Redirect ab (z.B. falsch konfigurierte Domain).
-  getRedirectResult(auth).catch((err) => {
-    console.error("Google-Anmeldung fehlgeschlagen:", err);
-  });
+  completeEmailLinkSignInIfNeeded(authError);
+  // Faengt Fehler aus dem Google-Redirect ab (z.B. falsch konfigurierte Domain)
+  // und zeigt sie sichtbar an, statt sie nur in der Browser-Konsole zu loggen.
+  getRedirectResult(auth)
+    .then((result) => {
+      if (result) {
+        console.log("Google-Anmeldung erfolgreich:", result.user.email);
+      }
+    })
+    .catch((err) => {
+      console.error("Google-Anmeldung fehlgeschlagen:", err);
+      authError.textContent = `Google-Anmeldung fehlgeschlagen: ${err.code || ""} ${err.message}`;
+    });
 }
 
-async function completeEmailLinkSignInIfNeeded() {
+async function completeEmailLinkSignInIfNeeded(authError) {
   if (!isSignInWithEmailLink(auth, window.location.href)) return;
 
   let email = window.localStorage.getItem(EMAIL_STORAGE_KEY);
@@ -78,5 +92,8 @@ async function completeEmailLinkSignInIfNeeded() {
     window.history.replaceState({}, document.title, window.location.pathname);
   } catch (err) {
     console.error("E-Mail-Link-Anmeldung fehlgeschlagen:", err);
+    if (authError) {
+      authError.textContent = `E-Mail-Link-Anmeldung fehlgeschlagen: ${err.code || ""} ${err.message}`;
+    }
   }
 }
