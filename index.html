@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <div id="global-error" style="display:none; position: sticky; top: 0; z-index: 999; background: #ff8080; color: #1a0000; padding: 0.6rem 1rem; font-size: 0.85rem; font-weight: 600; word-break: break-word;"></div>
+
   <header>
     <h1>Kick<span>Watch</span></h1>
     <button class="secondary" id="logout-btn" type="button" hidden>Abmelden</button>
@@ -89,6 +91,25 @@
     </section>
   </main>
 
+  <script>
+    // Zeigt JEDEN JS-Fehler sichtbar auf der Seite an (auch Ladefehler der
+    // Module selbst) - damit sich Probleme auf einem konkreten Geraet ohne
+    // Entwicklertools diagnostizieren lassen.
+    (function () {
+      var box = document.getElementById("global-error");
+      function show(msg) {
+        box.style.display = "block";
+        box.textContent = "Fehler: " + msg;
+      }
+      window.addEventListener("error", function (e) {
+        show((e.message || "unbekannt") + (e.filename ? " (" + e.filename + ":" + e.lineno + ")" : ""));
+      });
+      window.addEventListener("unhandledrejection", function (e) {
+        show("unhandledrejection: " + (e.reason && e.reason.message ? e.reason.message : e.reason));
+      });
+    })();
+  </script>
   <script type="module" src="js/app.js"></script>
+  <!-- build: 2026-08-09-2 -->
 </body>
 </html>
