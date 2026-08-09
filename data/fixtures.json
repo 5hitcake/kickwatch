@@ -1,5 +1,19 @@
 [
   {
+    "homeTeam": "Kaiserslautern",
+    "awayTeam": "Karlsruhe",
+    "kickoffUtc": "2026-08-15T18:30:00Z",
+    "competition": "German 2. Bundesliga",
+    "venue": "Fritz-Walter-Stadion"
+  },
+  {
+    "homeTeam": "FC Bayern München",
+    "awayTeam": "VfB Stuttgart",
+    "kickoffUtc": "2026-08-28T18:30:00Z",
+    "competition": "Bundesliga",
+    "venue": null
+  },
+  {
     "homeTeam": "FC Bayern München",
     "awayTeam": "VfB Stuttgart",
     "kickoffUtc": "2026-08-28T18:30:00Z",
@@ -14,6 +28,13 @@
     "venue": null
   },
   {
+    "homeTeam": "FC Schalke 04",
+    "awayTeam": "FC Bayern München",
+    "kickoffUtc": "2026-09-05T16:30:00Z",
+    "competition": "Bundesliga",
+    "venue": null
+  },
+  {
     "homeTeam": "TSG 1899 Hoffenheim",
     "awayTeam": "VfB Stuttgart",
     "kickoffUtc": "2026-09-12T13:30:00Z",
@@ -21,9 +42,30 @@
     "venue": null
   },
   {
+    "homeTeam": "SV 07 Elversberg",
+    "awayTeam": "FC Bayern München",
+    "kickoffUtc": "2026-09-13T15:30:00Z",
+    "competition": "Bundesliga",
+    "venue": null
+  },
+  {
+    "homeTeam": "FC Bayern München",
+    "awayTeam": "1. FC Union Berlin",
+    "kickoffUtc": "2026-09-18T18:30:00Z",
+    "competition": "Bundesliga",
+    "venue": null
+  },
+  {
     "homeTeam": "VfB Stuttgart",
     "awayTeam": "Borussia Dortmund",
     "kickoffUtc": "2026-09-19T16:30:00Z",
+    "competition": "Bundesliga",
+    "venue": null
+  },
+  {
+    "homeTeam": "FC Augsburg",
+    "awayTeam": "FC Bayern München",
+    "kickoffUtc": "2026-10-10T00:00:00Z",
     "competition": "Bundesliga",
     "venue": null
   },
