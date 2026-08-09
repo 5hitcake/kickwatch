@@ -103,9 +103,7 @@ function renderSuggestions(teams) {
   favoriteSuggestions.hidden = false;
 
   favoriteSuggestions.querySelectorAll(".suggestion-item").forEach((btn) => {
-    // mousedown statt click, damit es vor dem blur-Event des Inputs feuert
-    btn.addEventListener("mousedown", (event) => {
-      event.preventDefault();
+    btn.addEventListener("click", () => {
       addFavorite(btn.dataset.name);
     });
   });
@@ -121,9 +119,12 @@ addFavoriteInput.addEventListener("input", () => {
   }, 300);
 });
 
-addFavoriteInput.addEventListener("blur", () => {
-  // kurze Verzoegerung, damit ein Klick auf einen Vorschlag noch ankommt
-  setTimeout(hideSuggestions, 150);
+// Vorschlagsliste nur schliessen, wenn ausserhalb von Eingabefeld und Liste
+// getippt/geklickt wird - robuster auf Touch-Geraeten als das blur-Event,
+// das bei manchen mobilen Browsern vor dem Tap auf einen Vorschlag feuert.
+document.addEventListener("click", (event) => {
+  if (event.target === addFavoriteInput || favoriteSuggestions.contains(event.target)) return;
+  hideSuggestions();
 });
 
 async function loadFixtures() {
