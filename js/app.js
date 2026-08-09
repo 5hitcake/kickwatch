@@ -13,6 +13,9 @@ if ("serviceWorker" in navigator) {
 let currentUid = null;
 let favoriteTeams = [];
 let rawFixtures = [];
+let activeFilterTeam = null; // null = "Alle" (naechste 3 ueber alle Favoriten)
+const NEXT_N_COMBINED = 3;
+const NEXT_N_SINGLE_TEAM = 10;
 
 const authScreen = document.getElementById("auth-screen");
 const appScreen = document.getElementById("app-screen");
@@ -23,6 +26,8 @@ const addFavoriteForm = document.getElementById("add-favorite-form");
 const addFavoriteInput = document.getElementById("add-favorite-input");
 const favoriteSuggestions = document.getElementById("favorite-suggestions");
 const favoriteDebug = document.getElementById("favorite-debug");
+const fixtureFilter = document.getElementById("fixture-filter");
+const fixturesHeading = document.getElementById("fixtures-heading");
 
 // Zeigt den aktuellen Schritt direkt auf der Seite an (kein Entwicklertools
 // noetig, um auf dem Handy nachzuvollziehen, was das Skript gerade tut).
@@ -223,8 +228,55 @@ function filterFixturesForFavorites(fixtures) {
   );
 }
 
+// Wenn der aktuell gefilterte Verein aus den Favoriten entfernt wurde,
+// zurueck auf "Alle" springen statt eine leere/ungueltige Auswahl zu zeigen.
+function ensureValidFilter() {
+  if (activeFilterTeam && !favoriteTeams.includes(activeFilterTeam)) {
+    activeFilterTeam = null;
+  }
+}
+
+function renderFixtureFilter() {
+  if (!favoriteTeams.length) {
+    fixtureFilter.innerHTML = "";
+    return;
+  }
+  const pills = [{ label: "Alle", team: null }, ...favoriteTeams.map((t) => ({ label: t, team: t }))];
+  fixtureFilter.innerHTML = pills
+    .map(
+      (p, i) => `
+      <button type="button" class="filter-pill${p.team === activeFilterTeam ? " active" : ""}" data-index="${i}">
+        ${p.label}
+      </button>`
+    )
+    .join("");
+
+  fixtureFilter.querySelectorAll(".filter-pill").forEach((btn, i) => {
+    btn.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
+      activeFilterTeam = pills[i].team;
+      refreshFixturesView();
+    });
+  });
+}
+
 function refreshFixturesView() {
-  renderFixtures(filterFixturesForFavorites(rawFixtures));
+  ensureValidFilter();
+  renderFixtureFilter();
+
+  let fixtures = filterFixturesForFavorites(rawFixtures);
+  if (activeFilterTeam) {
+    fixtures = fixtures.filter(
+      (f) => teamMatches(activeFilterTeam, f.homeTeam) || teamMatches(activeFilterTeam, f.awayTeam)
+    );
+    fixturesHeading.textContent = `Alle Spiele: ${activeFilterTeam}`;
+    fixtures = fixtures.slice(0, NEXT_N_SINGLE_TEAM);
+  } else {
+    fixturesHeading.textContent = "Nächste Spiele";
+    fixtures = fixtures.slice(0, NEXT_N_COMBINED);
+  }
+
+  renderFixtures(fixtures);
 }
 
 function renderFixtures(fixtures) {

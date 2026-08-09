@@ -82,20 +82,23 @@
         <p class="meta" id="favorite-debug" style="font-size: 0.75rem; opacity: 0.6; margin-top: 0.5rem;"></p>
       </div>
 
-      <p class="meta">
-        Der Spielplan unten wird einmal täglich automatisch für alle gespeicherten
-        Vereine aktualisiert. Nach dem Hinzufügen eines neuen Vereins kann es bis
-        zu 24 Stunden dauern, bis dessen Spiele hier erscheinen.
-      </p>
-
-      <div id="fixtures-list">
-        <div class="empty-state">
-          <p>Lade Spiele...</p>
+      <div class="card">
+        <div id="fixture-filter" class="filter-row"></div>
+        <p class="meta" id="fixtures-heading">Nächste Spiele</p>
+        <div id="fixtures-list">
+          <div class="empty-state">
+            <p>Lade Spiele...</p>
+          </div>
         </div>
+        <p class="meta" style="font-size: 0.8rem; margin-top: 0.75rem;">
+          Der Spielplan wird einmal täglich automatisch aktualisiert. Nach dem
+          Hinzufügen eines neuen Vereins kann es bis zu 24 Stunden dauern, bis
+          dessen Spiele hier erscheinen.
+        </p>
       </div>
     </section>
 
-    <p class="meta" style="text-align:center; margin-top: 2rem; opacity: 0.4;">Build 2026-08-09-8</p>
+    <p class="meta" style="text-align:center; margin-top: 2rem; opacity: 0.4;">Build 2026-08-09-9</p>
   </main>
 
   <script>
