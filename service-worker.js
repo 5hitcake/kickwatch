@@ -1,4 +1,4 @@
-const CACHE_NAME = "kickwatch-shell-v7";
+const CACHE_NAME = "kickwatch-shell-v8";
 const SHELL_FILES = [
   "./",
   "index.html",

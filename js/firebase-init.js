@@ -10,7 +10,8 @@ import {
   signOut,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import {
-  getFirestore,
+  initializeFirestore,
+  memoryLocalCache,
   doc,
   getDoc,
   setDoc,
@@ -20,7 +21,11 @@ import { firebaseConfig } from "./firebase-config.js";
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
-export const db = getFirestore(app);
+// Nur Speicher-Cache statt IndexedDB-Persistenz: umgeht einen bekannten
+// internen Firestore-SDK-Fehler ("INTERNAL ASSERTION FAILED: Pending
+// promise was never set"), der durch IndexedDB-Offline-Speicherung
+// ausgeloest werden kann.
+export const db = initializeFirestore(app, { localCache: memoryLocalCache() });
 export const googleProvider = new GoogleAuthProvider();
 
 export {
