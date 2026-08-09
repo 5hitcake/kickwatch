@@ -30,6 +30,7 @@ const fixtureFilter = document.getElementById("fixture-filter");
 const fixturesHeading = document.getElementById("fixtures-heading");
 const calendarLinkBtn = document.getElementById("calendar-link-btn");
 const calendarLinkBox = document.getElementById("calendar-link-box");
+const calendarWebcalLink = document.getElementById("calendar-webcal-link");
 const calendarLinkInput = document.getElementById("calendar-link-input");
 const calendarCopyBtn = document.getElementById("calendar-copy-btn");
 const calendarCopyStatus = document.getElementById("calendar-copy-status");
@@ -346,6 +347,11 @@ calendarLinkBtn.addEventListener("click", async () => {
     const token = await ensureCalendarToken(currentUid);
     const basePath = location.pathname.replace(/index\.html$/, "").replace(/\/$/, "");
     const url = `${location.origin}${basePath}/data/calendar/${token}.ics`;
+    // webcal:// statt https:// - die meisten Kalender-Apps (iOS/Android
+    // Kalender, Google Kalender App) erkennen dieses Protokoll und bieten
+    // direkt "Kalender abonnieren" an, ohne dass man erst manuell in den
+    // Kalender-Einstellungen "Von URL hinzufuegen" suchen muss.
+    calendarWebcalLink.href = url.replace(/^https?:\/\//, "webcal://");
     calendarLinkInput.value = url;
     calendarLinkBox.hidden = false;
     calendarCopyStatus.textContent = "";

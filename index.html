@@ -103,10 +103,17 @@
           (Google, Samsung, Outlook – per URL-Abo). Der Link ist privat und
           zeigt nur deine eigenen Vereine.
         </p>
-        <button type="button" id="calendar-link-btn" class="secondary" style="margin-top: 0.5rem;">
-          Kalender-Link anzeigen
+        <button type="button" id="calendar-link-btn" style="margin-top: 0.5rem;">
+          Zum Kalender hinzufügen
         </button>
         <div id="calendar-link-box" hidden style="margin-top: 0.75rem;">
+          <a id="calendar-webcal-link" href="#" style="text-decoration: none;">
+            <button type="button" style="width: 100%;">📅 Direkt im Kalender öffnen</button>
+          </a>
+          <p class="meta" style="font-size: 0.75rem; margin-top: 0.5rem;">
+            Funktioniert automatisch mit den meisten Kalender-Apps. Öffnet sich
+            nichts, hier den Link manuell in der Kalender-App hinzufügen:
+          </p>
           <input
             type="text"
             id="calendar-link-input"
@@ -121,7 +128,7 @@
       </div>
     </section>
 
-    <p class="meta" style="text-align:center; margin-top: 2rem; opacity: 0.4;">Build 2026-08-09-13</p>
+    <p class="meta" style="text-align:center; margin-top: 2rem; opacity: 0.4;">Build 2026-08-09-14</p>
   </main>
 
   <script>
