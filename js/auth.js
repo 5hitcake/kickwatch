@@ -1,8 +1,7 @@
 import {
   auth,
   googleProvider,
-  signInWithRedirect,
-  getRedirectResult,
+  signInWithPopup,
   sendSignInLinkToEmail,
   isSignInWithEmailLink,
   signInWithEmailLink,
@@ -27,9 +26,17 @@ export function initAuthUI({ onLogin, onLogout }) {
   googleBtn.addEventListener("click", async () => {
     authError.textContent = "";
     try {
-      await signInWithRedirect(auth, googleProvider);
+      await signInWithPopup(auth, googleProvider);
+      // onAuthStateChanged uebernimmt den Rest (onLogin wird automatisch ausgeloest).
     } catch (err) {
-      authError.textContent = `Fehler beim Weiterleiten zu Google: ${err.code || ""} ${err.message}`;
+      if (err.code === "auth/popup-blocked") {
+        authError.textContent =
+          "Popup wurde blockiert. Bitte Popups fuer diese Seite erlauben und nochmal versuchen.";
+      } else if (err.code === "auth/cancelled-popup-request" || err.code === "auth/popup-closed-by-user") {
+        // Nutzer hat das Popup selbst geschlossen - kein Fehler, den man anzeigen muss.
+      } else {
+        authError.textContent = `Google-Anmeldung fehlgeschlagen: ${err.code || ""} ${err.message}`;
+      }
     }
   });
 
@@ -63,18 +70,6 @@ export function initAuthUI({ onLogin, onLogout }) {
   });
 
   completeEmailLinkSignInIfNeeded(authError);
-  // Faengt Fehler aus dem Google-Redirect ab (z.B. falsch konfigurierte Domain)
-  // und zeigt sie sichtbar an, statt sie nur in der Browser-Konsole zu loggen.
-  getRedirectResult(auth)
-    .then((result) => {
-      if (result) {
-        console.log("Google-Anmeldung erfolgreich:", result.user.email);
-      }
-    })
-    .catch((err) => {
-      console.error("Google-Anmeldung fehlgeschlagen:", err);
-      authError.textContent = `Google-Anmeldung fehlgeschlagen: ${err.code || ""} ${err.message}`;
-    });
 }
 
 async function completeEmailLinkSignInIfNeeded(authError) {
