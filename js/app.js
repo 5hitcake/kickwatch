@@ -1,5 +1,5 @@
 import { initAuthUI } from "./auth.js";
-import { loadFavoriteTeams, saveFavoriteTeams } from "./favorites.js";
+import { loadFavoriteTeams, saveFavoriteTeams, ensureCalendarToken } from "./favorites.js";
 import { searchTeams, fetchTeamFixturesPreview } from "./team-search.js";
 
 if ("serviceWorker" in navigator) {
@@ -28,6 +28,11 @@ const favoriteSuggestions = document.getElementById("favorite-suggestions");
 const favoriteDebug = document.getElementById("favorite-debug");
 const fixtureFilter = document.getElementById("fixture-filter");
 const fixturesHeading = document.getElementById("fixtures-heading");
+const calendarLinkBtn = document.getElementById("calendar-link-btn");
+const calendarLinkBox = document.getElementById("calendar-link-box");
+const calendarLinkInput = document.getElementById("calendar-link-input");
+const calendarCopyBtn = document.getElementById("calendar-copy-btn");
+const calendarCopyStatus = document.getElementById("calendar-copy-status");
 
 // Zeigt den aktuellen Schritt direkt auf der Seite an (kein Entwicklertools
 // noetig, um auf dem Handy nachzuvollziehen, was das Skript gerade tut).
@@ -333,5 +338,31 @@ function renderFixtures(fixtures) {
     )
     .join("");
 }
+
+calendarLinkBtn.addEventListener("click", async () => {
+  calendarLinkBtn.disabled = true;
+  calendarLinkBtn.textContent = "Lade...";
+  try {
+    const token = await ensureCalendarToken(currentUid);
+    const basePath = location.pathname.replace(/index\.html$/, "").replace(/\/$/, "");
+    const url = `${location.origin}${basePath}/data/calendar/${token}.ics`;
+    calendarLinkInput.value = url;
+    calendarLinkBox.hidden = false;
+    calendarCopyStatus.textContent = "";
+  } finally {
+    calendarLinkBtn.disabled = false;
+    calendarLinkBtn.textContent = "Kalender-Link anzeigen";
+  }
+});
+
+calendarCopyBtn.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(calendarLinkInput.value);
+    calendarCopyStatus.textContent = "Link kopiert!";
+  } catch {
+    calendarLinkInput.select();
+    calendarCopyStatus.textContent = "Bitte manuell kopieren (Text ist markiert).";
+  }
+});
 
 initAuthUI({ onLogin, onLogout });

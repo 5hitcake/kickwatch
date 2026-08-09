@@ -95,9 +95,33 @@
           Daten holt der automatische Abruf einmal täglich nach.
         </p>
       </div>
+
+      <div class="card">
+        <p class="club">Kalender-Abo</p>
+        <p class="meta">
+          Trage die Spiele deiner Favoriten automatisch in deinen Kalender ein
+          (Google, Samsung, Outlook – per URL-Abo). Der Link ist privat und
+          zeigt nur deine eigenen Vereine.
+        </p>
+        <button type="button" id="calendar-link-btn" class="secondary" style="margin-top: 0.5rem;">
+          Kalender-Link anzeigen
+        </button>
+        <div id="calendar-link-box" hidden style="margin-top: 0.75rem;">
+          <input
+            type="text"
+            id="calendar-link-input"
+            readonly
+            style="width: 100%; padding: 0.6rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 0.8rem;"
+          />
+          <button type="button" id="calendar-copy-btn" class="secondary" style="margin-top: 0.5rem;">
+            Link kopieren
+          </button>
+          <p class="meta" id="calendar-copy-status" style="font-size: 0.8rem;"></p>
+        </div>
+      </div>
     </section>
 
-    <p class="meta" style="text-align:center; margin-top: 2rem; opacity: 0.4;">Build 2026-08-09-12</p>
+    <p class="meta" style="text-align:center; margin-top: 2rem; opacity: 0.4;">Build 2026-08-09-13</p>
   </main>
 
   <script>

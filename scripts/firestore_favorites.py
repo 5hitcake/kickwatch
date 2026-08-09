@@ -46,3 +46,39 @@ def get_favorite_teams() -> list:
     except Exception as exc:  # noqa: BLE001 - bewusst breit, damit ein Firestore-Ausfall nie den ganzen Lauf blockiert
         print(f"[WARN] Firestore-Abruf fehlgeschlagen ({exc}), nutze Standardliste.", file=sys.stderr)
         return DEFAULT_TEAMS
+
+
+def get_users_with_calendar_tokens() -> list:
+    """Liefert pro Nutzer mit eigenem Kalender-Token (calendarToken, wird im
+    Frontend beim ersten Oeffnen des Kalender-Bereichs erzeugt) dessen
+    Lieblingsvereine, damit daraus ein privater .ics-Feed nur mit den
+    eigenen Spielen gebaut werden kann. Nutzer ohne Token (Kalender-Feature
+    noch nie geoeffnet) werden ausgelassen.
+    """
+    creds_json = os.environ.get("FIREBASE_SERVICE_ACCOUNT")
+    if not creds_json:
+        print("[WARN] Kein FIREBASE_SERVICE_ACCOUNT gesetzt, kein Kalender-Abgleich moeglich.", file=sys.stderr)
+        return []
+
+    try:
+        import firebase_admin
+        from firebase_admin import credentials, firestore
+
+        if not firebase_admin._apps:
+            cred = credentials.Certificate(json.loads(creds_json))
+            firebase_admin.initialize_app(cred)
+
+        db = firestore.client()
+        users = []
+        for doc in db.collection("users").stream():
+            data = doc.to_dict() or {}
+            token = data.get("calendarToken")
+            teams = [t for t in data.get("favoriteTeams", []) if t]
+            if token and teams:
+                users.append({"uid": doc.id, "calendarToken": token, "favoriteTeams": teams})
+
+        print(f"[INFO] {len(users)} Nutzer mit Kalender-Token gefunden.")
+        return users
+    except Exception as exc:  # noqa: BLE001
+        print(f"[WARN] Firestore-Abruf (Kalender-Token) fehlgeschlagen ({exc}).", file=sys.stderr)
+        return []
