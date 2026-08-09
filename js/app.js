@@ -118,16 +118,26 @@ async function addFavorite(team) {
   }
 }
 
-function fixtureKey(f) {
-  return `${f.homeTeam}|${f.awayTeam}|${f.kickoffUtc}`;
+// Team-Paar (unabhaengig von Heim/Auswaerts-Reihenfolge, Umlauten,
+// Gross-/Kleinschreibung) + Kalendertag statt exakter Uhrzeit: die
+// Sofort-Vorschau (TheSportsDB) und der spaetere Server-Abruf
+// (football-data.org) schreiben denselben Verein teils leicht anders
+// (z.B. "VfB Stuttgart" vs. "Stuttgart") und die Anstosszeit kann um ein
+// paar Minuten abweichen - ein exakter String-Vergleich haette dasselbe
+// Spiel faelschlich zweimal gelistet.
+function fixtureDedupeKey(f) {
+  const day = (f.kickoffUtc || "").slice(0, 10);
+  const teams = [normalizeTeamName(f.homeTeam), normalizeTeamName(f.awayTeam)].sort().join("|");
+  return `${day}::${teams}`;
 }
 
 function mergeFixtures(newFixtures) {
-  const existingKeys = new Set(rawFixtures.map(fixtureKey));
+  const existingKeys = new Set(rawFixtures.map(fixtureDedupeKey));
   for (const f of newFixtures) {
-    if (!existingKeys.has(fixtureKey(f))) {
+    const key = fixtureDedupeKey(f);
+    if (!existingKeys.has(key)) {
       rawFixtures.push(f);
-      existingKeys.add(fixtureKey(f));
+      existingKeys.add(key);
     }
   }
   rawFixtures.sort((a, b) => (a.kickoffUtc || "").localeCompare(b.kickoffUtc || ""));

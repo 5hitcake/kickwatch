@@ -65,16 +65,40 @@ def fd_get(path: str, api_key: str, params: dict | None = None):
     return resp.json()
 
 
-def find_team_in_football_data(team_name: str, api_key: str):
-    for code in FD_COMPETITIONS:
+def build_football_data_index(api_key: str) -> list:
+    """Laedt die Kader aller bekannten Wettbewerbe genau EINMAL pro Lauf und
+    baut daraus ein Nachschlage-Register. Vorher wurden die Kader fuer jeden
+    einzelnen Favoriten erneut abgerufen (11 Wettbewerbe x N Vereine) - das
+    hat bei mehreren gespeicherten Vereinen sehr schnell das Free-Tier-Limit
+    von football-data.org (10 Anfragen/Minute) gesprengt, wodurch manche
+    Vereine (z.B. Manchester United) gar nicht gefunden wurden oder nur
+    unvollstaendige Daten (Fallback auf TheSportsDB mit oft nur 1 Spiel)
+    bekamen.
+    """
+    index = []
+    for i, code in enumerate(FD_COMPETITIONS):
         data = fd_get(f"/competitions/{code}/teams", api_key)
         if data:
             for team in data.get("teams", []):
-                name = team.get("name", "")
-                short = team.get("shortName", "") or ""
-                if team_name.lower() in name.lower() or team_name.lower() in short.lower():
-                    return team["id"], name
-        time.sleep(6.5)  # Free-Tier-Limit: 10 Anfragen/Minute
+                index.append(
+                    {
+                        "id": team["id"],
+                        "name": team.get("name", ""),
+                        "short": team.get("shortName", "") or "",
+                    }
+                )
+        else:
+            print(f"[WARN] Kader fuer Wettbewerb {code} nicht abrufbar (Rate-Limit/Fehler)", file=sys.stderr)
+        if i < len(FD_COMPETITIONS) - 1:
+            time.sleep(6.5)  # Free-Tier-Limit: 10 Anfragen/Minute
+    return index
+
+
+def find_team_in_index(team_name: str, index: list):
+    q = team_name.lower()
+    for team in index:
+        if q in team["name"].lower() or (team["short"] and q in team["short"].lower()):
+            return team["id"], team["name"]
     return None, None
 
 
@@ -133,9 +157,9 @@ def to_fixture_dict_tsdb(event: dict) -> dict:
 # --- Orchestrierung --------------------------------------------------------
 
 
-def fetch_team_fixtures(team_name: str, fd_api_key: str | None) -> list:
+def fetch_team_fixtures(team_name: str, fd_api_key: str | None, fd_index: list) -> list:
     if fd_api_key:
-        fd_team_id, fd_team_name = find_team_in_football_data(team_name, fd_api_key)
+        fd_team_id, fd_team_name = find_team_in_index(team_name, fd_index)
         if fd_team_id:
             print(f"[INFO] '{team_name}' -> football-data.org: {fd_team_name} (ID {fd_team_id})")
             matches = fetch_football_data_fixtures(fd_team_id, fd_api_key)
@@ -155,15 +179,39 @@ def fetch_team_fixtures(team_name: str, fd_api_key: str | None) -> list:
     return [to_fixture_dict_tsdb(e) for e in events]
 
 
+def dedupe_fixtures(fixtures: list) -> list:
+    """Wenn zwei gespeicherte Vereine gegeneinander spielen, taucht dasselbe
+    Spiel einmal im Abruf jedes der beiden Vereine auf. Hier rausfiltern,
+    identifiziert ueber Kalendertag + Vereins-Paar (unabhaengig von
+    Heim/Auswaerts-Reihenfolge).
+    """
+    seen = set()
+    result = []
+    for f in fixtures:
+        day = (f.get("kickoffUtc") or "")[:10]
+        pair = tuple(sorted([(f.get("homeTeam") or "").strip().lower(), (f.get("awayTeam") or "").strip().lower()]))
+        key = (day, pair)
+        if key in seen:
+            continue
+        seen.add(key)
+        result.append(f)
+    return result
+
+
 def main():
     fd_api_key = os.environ.get("FOOTBALL_DATA_API_KEY")
     teams = get_favorite_teams()
 
+    fd_index = build_football_data_index(fd_api_key) if fd_api_key else []
+
     all_fixtures = []
-    for team_name in teams:
-        all_fixtures.extend(fetch_team_fixtures(team_name, fd_api_key))
+    for i, team_name in enumerate(teams):
+        all_fixtures.extend(fetch_team_fixtures(team_name, fd_api_key, fd_index))
+        if fd_api_key and i < len(teams) - 1:
+            time.sleep(6.5)  # Free-Tier-Limit: 10 Anfragen/Minute (fuer den Spielplan-Abruf je Team)
 
     all_fixtures = [f for f in all_fixtures if f.get("kickoffUtc")]
+    all_fixtures = dedupe_fixtures(all_fixtures)
     all_fixtures.sort(key=lambda f: f["kickoffUtc"])
     OUTPUT_FILE.write_text(json.dumps(all_fixtures, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"[OK] {len(all_fixtures)} Spiele geschrieben nach {OUTPUT_FILE}")
