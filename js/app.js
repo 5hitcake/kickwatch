@@ -76,28 +76,35 @@ async function addFavorite(team) {
   await saveFavoriteTeams(currentUid, favoriteTeams);
 }
 
-let currentSuggestions = [];
-
-addFavoriteForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  // Bei offener Vorschlagsliste zaehlt der erste (beste) Treffer statt des
-  // rohen Tippfehler-anfaelligen Texts - verhindert doppelte/uneinheitliche
-  // Eintraege, wenn per Tastatur-Enter statt per Antippen bestaetigt wird.
-  if (currentSuggestions.length) {
-    await addFavorite(currentSuggestions[0].name);
-    return;
-  }
+// Speichert immer genau das, was eingetippt wurde - keine Sonderlogik.
+// Die Vorschlagsliste ist nur eine optionale Abkuerzung (antippen fuegt
+// den offiziellen Namen direkt hinzu), aendert aber nie, was beim
+// Bestaetigen per Button/Enter gespeichert wird.
+async function submitTypedTeam() {
   await addFavorite(addFavoriteInput.value.trim());
+}
+
+addFavoriteForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  submitTypedTeam();
+});
+
+// Manche mobilen Tastaturen (z.B. mit "Öffnen"/"Los" statt "Weiter"/"Fertig"
+// beschriftet) loesen kein zuverlaessiges natives submit-Event aus. Enter
+// wird deshalb zusaetzlich direkt abgefangen.
+addFavoriteInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    submitTypedTeam();
+  }
 });
 
 function hideSuggestions() {
-  currentSuggestions = [];
   favoriteSuggestions.hidden = true;
   favoriteSuggestions.innerHTML = "";
 }
 
 function renderSuggestions(teams) {
-  currentSuggestions = teams;
   if (!teams.length) {
     hideSuggestions();
     return;
