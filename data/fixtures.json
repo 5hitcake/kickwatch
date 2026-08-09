@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "homeTeam": "Fulham",
+    "awayTeam": "Stuttgart",
+    "kickoffUtc": "2026-08-15T15:00:00Z",
+    "competition": "Club Friendlies",
+    "venue": "Craven Cottage"
+  }
+]
