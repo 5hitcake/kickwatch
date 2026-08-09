@@ -21,6 +21,14 @@ const favoritesList = document.getElementById("favorites-list");
 const addFavoriteForm = document.getElementById("add-favorite-form");
 const addFavoriteInput = document.getElementById("add-favorite-input");
 const favoriteSuggestions = document.getElementById("favorite-suggestions");
+const favoriteDebug = document.getElementById("favorite-debug");
+
+// Zeigt den aktuellen Schritt direkt auf der Seite an (kein Entwicklertools
+// noetig, um auf dem Handy nachzuvollziehen, was das Skript gerade tut).
+function debugStatus(msg) {
+  console.log("[KickWatch]", msg);
+  if (favoriteDebug) favoriteDebug.textContent = msg;
+}
 
 async function onLogin(user) {
   currentUid = user.uid;
@@ -68,22 +76,26 @@ function renderFavorites() {
 }
 
 async function addFavorite(team) {
-  console.log("[KickWatch] addFavorite() aufgerufen mit:", JSON.stringify(team));
+  debugStatus(`addFavorite() aufgerufen mit: "${team}"`);
   if (!team) {
-    console.log("[KickWatch] addFavorite() abgebrochen: leerer Name");
+    debugStatus("Abgebrochen: leerer Name");
     return;
   }
   if (favoriteTeams.includes(team)) {
-    console.log("[KickWatch] addFavorite() abgebrochen: bereits vorhanden");
+    debugStatus(`Abgebrochen: "${team}" ist bereits in der Liste`);
     return;
   }
   favoriteTeams.push(team);
   addFavoriteInput.value = "";
   hideSuggestions();
   renderFavorites();
-  console.log("[KickWatch] lokal hinzugefuegt, speichere jetzt in Firestore fuer uid:", currentUid);
-  await saveFavoriteTeams(currentUid, favoriteTeams);
-  console.log("[KickWatch] in Firestore gespeichert.");
+  debugStatus(`"${team}" lokal hinzugefuegt, speichere jetzt online...`);
+  try {
+    await saveFavoriteTeams(currentUid, favoriteTeams);
+    debugStatus(`"${team}" erfolgreich gespeichert.`);
+  } catch (err) {
+    debugStatus(`Fehler beim Speichern von "${team}": ${err && err.message ? err.message : err}`);
+  }
 }
 
 // Speichert immer genau das, was eingetippt wurde, wenn per Button/Enter
@@ -113,7 +125,7 @@ function hideSuggestions() {
 }
 
 function renderSuggestions(teams) {
-  console.log("[KickWatch] renderSuggestions():", teams.length, "Treffer");
+  debugStatus(`Vorschlagsliste: ${teams.length} Treffer`);
   if (!teams.length) {
     hideSuggestions();
     return;
@@ -130,9 +142,14 @@ function renderSuggestions(teams) {
   favoriteSuggestions.hidden = false;
 
   favoriteSuggestions.querySelectorAll(".suggestion-item").forEach((btn) => {
-    btn.addEventListener("click", () => {
+    // pointerdown statt click: feuert VOR blur/Ausblenden des Suchfelds,
+    // damit der Tap auf einen Vorschlag auch dann ankommt, wenn ein
+    // Blur-bedingtes Schliessen der Liste sonst schneller waere als das
+    // click-Event auf mobilen Browsern.
+    btn.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
       const team = teams[Number(btn.dataset.index)];
-      console.log("[KickWatch] Vorschlag angetippt:", team);
+      debugStatus(`Vorschlag angetippt: "${team.name}"`);
       addFavorite(team.name);
     });
   });
@@ -142,6 +159,7 @@ let searchDebounce;
 addFavoriteInput.addEventListener("input", () => {
   clearTimeout(searchDebounce);
   const query = addFavoriteInput.value;
+  debugStatus(`Eingabe: "${query}" - suche...`);
   searchDebounce = setTimeout(async () => {
     const teams = await searchTeams(query);
     renderSuggestions(teams);
