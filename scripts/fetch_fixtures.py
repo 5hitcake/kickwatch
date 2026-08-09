@@ -1,105 +1,75 @@
 # -*- coding: utf-8 -*-
 """
-KickWatch - Spielplan-Abruf ueber API-Football (api-sports.io)
+KickWatch - Spielplan-Abruf ueber TheSportsDB
 
 Testphase: ruft die naechsten Spiele fuer eine feste Liste von Vereinen ab
 und schreibt sie nach data/fixtures.json. Sobald Nutzerprofile (Firebase)
 existieren, wird TEAMS hier durch die tatsaechlich von Nutzern favorisierten
 Vereine ersetzt.
 
-Benoetigt die Umgebungsvariable API_FOOTBALL_KEY (GitHub Actions Secret).
+Nutzt den oeffentlichen, kostenlosen Test-Key '3' von TheSportsDB (kein
+Secret noetig). Bei spuerbaren Rate-Limits oder luecken- haften Daten kann
+spaeter auf einen eigenen (Patreon-)Key umgestellt werden.
 """
 
 import json
-import os
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
 
-API_BASE = "https://v3.football.api-sports.io"
+BASE = "https://www.thesportsdb.com/api/v1/json/3"
 OUTPUT_FILE = Path(__file__).resolve().parent.parent / "data" / "fixtures.json"
 
-# Testphase: Vereinsname -> wird zur Laufzeit per Suche in eine API-Football
+# Testphase: Vereinsname -> wird zur Laufzeit per Suche in eine TheSportsDB
 # Team-ID aufgeloest (robuster als IDs hart zu codieren).
 TEAMS = [
     "VfB Stuttgart",
 ]
 
-SEASON = 2026  # Saison 2026/27
-NEXT_N_FIXTURES = 5
 
-
-def api_get(path: str, params: dict, api_key: str) -> dict:
-    resp = requests.get(
-        f"{API_BASE}{path}",
-        headers={"x-apisports-key": api_key},
-        params=params,
-        timeout=20,
-    )
+def find_team_id(team_name: str):
+    resp = requests.get(f"{BASE}/searchteams.php", params={"t": team_name}, timeout=20)
     resp.raise_for_status()
-    data = resp.json()
-    if data.get("errors"):
-        print(f"[WARN] API meldet Fehler fuer {path} {params}: {data['errors']}", file=sys.stderr)
-    return data
-
-
-def find_team_id(team_name: str, api_key: str):
-    data = api_get("/teams", {"search": team_name}, api_key)
-    results = data.get("response", [])
-    if not results:
+    teams = resp.json().get("teams") or []
+    if not teams:
         print(f"[WARN] Kein Team gefunden fuer '{team_name}'", file=sys.stderr)
         return None
     # Ersten Treffer nehmen; bei mehrdeutigen Namen spaeter Auswahl anbieten.
-    team = results[0]["team"]
-    print(f"[INFO] '{team_name}' -> Team-ID {team['id']} ({team['name']}, {team.get('country')})")
-    return team["id"]
+    team = teams[0]
+    print(f"[INFO] '{team_name}' -> Team-ID {team['idTeam']} ({team['strTeam']}, {team.get('strCountry')})")
+    return team["idTeam"]
 
 
-def fetch_upcoming_fixtures(team_id: int, api_key: str) -> list:
-    # Der "next"-Parameter ist im Free Plan von API-Football gesperrt, daher
-    # holen wir den kompletten Saisonplan und filtern clientseitig auf
-    # kommende Spiele.
-    data = api_get("/fixtures", {"team": team_id, "season": SEASON}, api_key)
-    all_matches = data.get("response", [])
-    now = datetime.now(timezone.utc)
-    upcoming = [
-        m for m in all_matches
-        if datetime.fromisoformat(m["fixture"]["date"]) > now
-    ]
-    upcoming.sort(key=lambda m: m["fixture"]["date"])
-    return upcoming[:NEXT_N_FIXTURES]
+def fetch_upcoming_fixtures(team_id: str) -> list:
+    resp = requests.get(f"{BASE}/eventsnext.php", params={"id": team_id}, timeout=20)
+    resp.raise_for_status()
+    return resp.json().get("events") or []
 
 
-def to_fixture_dict(raw: dict) -> dict:
-    fixture = raw["fixture"]
-    teams = raw["teams"]
-    league = raw["league"]
+def to_fixture_dict(event: dict) -> dict:
+    date = event.get("dateEvent")
+    time_ = event.get("strTime") or "00:00:00"
     return {
-        "homeTeam": teams["home"]["name"],
-        "awayTeam": teams["away"]["name"],
-        "kickoffUtc": fixture["date"],
-        "competition": f"{league['name']} ({league.get('round', '')})".strip(),
-        "venue": (fixture.get("venue") or {}).get("name"),
+        "homeTeam": event.get("strHomeTeam"),
+        "awayTeam": event.get("strAwayTeam"),
+        "kickoffUtc": f"{date}T{time_}Z" if date else None,
+        "competition": event.get("strLeague") or "Freundschaftsspiel",
+        "venue": event.get("strVenue"),
     }
 
 
 def main():
-    api_key = os.environ.get("API_FOOTBALL_KEY")
-    if not api_key:
-        print("[ERROR] API_FOOTBALL_KEY ist nicht gesetzt.", file=sys.stderr)
-        sys.exit(1)
-
     all_fixtures = []
     for team_name in TEAMS:
-        team_id = find_team_id(team_name, api_key)
+        team_id = find_team_id(team_name)
         if team_id is None:
             continue
-        raw_fixtures = fetch_upcoming_fixtures(team_id, api_key)
+        raw_fixtures = fetch_upcoming_fixtures(team_id)
         print(f"[INFO] {team_name}: {len(raw_fixtures)} kommende Spiele gefunden")
-        all_fixtures.extend(to_fixture_dict(f) for f in raw_fixtures)
+        all_fixtures.extend(to_fixture_dict(e) for e in raw_fixtures)
 
+    all_fixtures = [f for f in all_fixtures if f["kickoffUtc"]]
     all_fixtures.sort(key=lambda f: f["kickoffUtc"])
     OUTPUT_FILE.write_text(json.dumps(all_fixtures, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"[OK] {len(all_fixtures)} Spiele geschrieben nach {OUTPUT_FILE}")

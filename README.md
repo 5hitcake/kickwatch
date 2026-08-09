@@ -20,7 +20,7 @@ und Kalender-Sync.
 ## Tech-Stack
 
 - **Frontend**: Statisches PWA (HTML/CSS/JS, kein Build-Prozess), gehostet über GitHub Pages
-- **Spieldaten**: [API-Football](https://www.api-football.com/) (api-sports.io), täglich per GitHub Actions abgerufen und als statische JSON-Dateien im Repo abgelegt
+- **Spieldaten**: [TheSportsDB](https://www.thesportsdb.com/) (kostenloser Test-Key, kein Secret nötig), täglich per GitHub Actions abgerufen und als statische JSON-Dateien im Repo abgelegt. (API-Football wurde getestet, aber der Free Plan blockiert die aktuelle Saison komplett – Wechsel dorthin ist später gegen 19 $/Monat möglich, falls TheSportsDB-Daten zu lückenhaft werden.)
 - **Nutzerkonten & Lieblingsvereine**: Firebase (Google-Login + Firestore) – folgt in einem späteren Schritt
 - **Kalender-Sync**: ICS-Export (wie im Schwesterprojekt [vfb-calendar](https://github.com/5hitcake/vfb-calendar)), optional Google-Calendar-API
 
