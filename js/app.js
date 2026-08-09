@@ -30,6 +30,7 @@ const fixtureFilter = document.getElementById("fixture-filter");
 const fixturesHeading = document.getElementById("fixtures-heading");
 const calendarLinkBtn = document.getElementById("calendar-link-btn");
 const calendarLinkBox = document.getElementById("calendar-link-box");
+const calendarGoogleLink = document.getElementById("calendar-google-link");
 const calendarWebcalLink = document.getElementById("calendar-webcal-link");
 const calendarLinkInput = document.getElementById("calendar-link-input");
 const calendarCopyBtn = document.getElementById("calendar-copy-btn");
@@ -347,10 +348,12 @@ calendarLinkBtn.addEventListener("click", async () => {
     const token = await ensureCalendarToken(currentUid);
     const basePath = location.pathname.replace(/index\.html$/, "").replace(/\/$/, "");
     const url = `${location.origin}${basePath}/data/calendar/${token}.ics`;
-    // webcal:// statt https:// - die meisten Kalender-Apps (iOS/Android
-    // Kalender, Google Kalender App) erkennen dieses Protokoll und bieten
-    // direkt "Kalender abonnieren" an, ohne dass man erst manuell in den
-    // Kalender-Einstellungen "Von URL hinzufuegen" suchen muss.
+    // Google Kalender akzeptiert eine ICS-URL direkt als "cid"-Parameter
+    // und zeigt dann sofort den "Kalender abonnieren"-Dialog - zuverlaessiger
+    // als webcal:// auf Android/Samsung, wo oft keine App als Handler dafuer
+    // registriert ist.
+    calendarGoogleLink.href = `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(url)}`;
+    // webcal:// als Alternative (funktioniert v.a. auf iOS zuverlaessig).
     calendarWebcalLink.href = url.replace(/^https?:\/\//, "webcal://");
     calendarLinkInput.value = url;
     calendarLinkBox.hidden = false;
