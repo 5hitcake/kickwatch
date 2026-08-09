@@ -1,5 +1,6 @@
 import { initAuthUI } from "./auth.js";
 import { loadFavoriteTeams, saveFavoriteTeams } from "./favorites.js";
+import { searchTeams } from "./team-search.js";
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
@@ -19,6 +20,7 @@ const userEmailLabel = document.getElementById("user-email");
 const favoritesList = document.getElementById("favorites-list");
 const addFavoriteForm = document.getElementById("add-favorite-form");
 const addFavoriteInput = document.getElementById("add-favorite-input");
+const favoriteSuggestions = document.getElementById("favorite-suggestions");
 
 async function onLogin(user) {
   currentUid = user.uid;
@@ -66,15 +68,26 @@ function renderFavorites() {
 }
 
 async function addFavorite(team) {
-  if (!team || favoriteTeams.includes(team)) return;
+  console.log("[KickWatch] addFavorite() aufgerufen mit:", JSON.stringify(team));
+  if (!team) {
+    console.log("[KickWatch] addFavorite() abgebrochen: leerer Name");
+    return;
+  }
+  if (favoriteTeams.includes(team)) {
+    console.log("[KickWatch] addFavorite() abgebrochen: bereits vorhanden");
+    return;
+  }
   favoriteTeams.push(team);
   addFavoriteInput.value = "";
+  hideSuggestions();
   renderFavorites();
+  console.log("[KickWatch] lokal hinzugefuegt, speichere jetzt in Firestore fuer uid:", currentUid);
   await saveFavoriteTeams(currentUid, favoriteTeams);
+  console.log("[KickWatch] in Firestore gespeichert.");
 }
 
-// Speichert immer genau das, was eingetippt wurde - kein Vorschlags-Dropdown,
-// kein Zwischenschritt. Eintippen + Bestaetigen fuegt direkt zur Liste hinzu.
+// Speichert immer genau das, was eingetippt wurde, wenn per Button/Enter
+// bestaetigt wird (kein Vorschlag ausgewaehlt).
 async function submitTypedTeam() {
   await addFavorite(addFavoriteInput.value.trim());
 }
@@ -92,6 +105,54 @@ addFavoriteInput.addEventListener("keydown", (event) => {
     event.preventDefault();
     submitTypedTeam();
   }
+});
+
+function hideSuggestions() {
+  favoriteSuggestions.hidden = true;
+  favoriteSuggestions.innerHTML = "";
+}
+
+function renderSuggestions(teams) {
+  console.log("[KickWatch] renderSuggestions():", teams.length, "Treffer");
+  if (!teams.length) {
+    hideSuggestions();
+    return;
+  }
+  favoriteSuggestions.innerHTML = teams
+    .map(
+      (t, i) => `
+      <button type="button" class="suggestion-item" data-index="${i}">
+        ${t.name}
+        <div class="suggestion-meta">${[t.league, t.country].filter(Boolean).join(" · ")}</div>
+      </button>`
+    )
+    .join("");
+  favoriteSuggestions.hidden = false;
+
+  favoriteSuggestions.querySelectorAll(".suggestion-item").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const team = teams[Number(btn.dataset.index)];
+      console.log("[KickWatch] Vorschlag angetippt:", team);
+      addFavorite(team.name);
+    });
+  });
+}
+
+let searchDebounce;
+addFavoriteInput.addEventListener("input", () => {
+  clearTimeout(searchDebounce);
+  const query = addFavoriteInput.value;
+  searchDebounce = setTimeout(async () => {
+    const teams = await searchTeams(query);
+    renderSuggestions(teams);
+  }, 300);
+});
+
+// Vorschlagsliste nur schliessen, wenn ausserhalb von Eingabefeld und Liste
+// getippt/geklickt wird.
+document.addEventListener("click", (event) => {
+  if (event.target === addFavoriteInput || favoriteSuggestions.contains(event.target)) return;
+  hideSuggestions();
 });
 
 async function loadFixtures() {

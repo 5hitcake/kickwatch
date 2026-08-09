@@ -62,17 +62,20 @@
       <div class="card">
         <p class="club">Deine Lieblingsvereine</p>
         <div id="favorites-list"></div>
-        <form id="add-favorite-form" style="margin-top: 0.75rem; display: flex; gap: 0.5rem;" autocomplete="off">
-          <input
-            type="text"
-            id="add-favorite-input"
-            placeholder="Vereinsname eintippen, z. B. Real Madrid"
-            autocomplete="off"
-            enterkeyhint="done"
-            style="flex: 1; padding: 0.6rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text);"
-          />
-          <button type="submit">Hinzufügen</button>
-        </form>
+        <div style="position: relative; margin-top: 0.75rem;">
+          <form id="add-favorite-form" style="display: flex; gap: 0.5rem;" autocomplete="off">
+            <input
+              type="text"
+              id="add-favorite-input"
+              placeholder="Vereinsname eintippen, z. B. Real Madrid"
+              autocomplete="off"
+              enterkeyhint="done"
+              style="flex: 1; padding: 0.6rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text);"
+            />
+            <button type="submit">Hinzufügen</button>
+          </form>
+          <div id="favorite-suggestions" class="suggestions" hidden></div>
+        </div>
       </div>
 
       <p class="meta">
@@ -87,7 +90,7 @@
       </div>
     </section>
 
-    <p class="meta" style="text-align:center; margin-top: 2rem; opacity: 0.4;">Build 2026-08-09-3</p>
+    <p class="meta" style="text-align:center; margin-top: 2rem; opacity: 0.4;">Build 2026-08-09-4</p>
   </main>
 
   <script>
