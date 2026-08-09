@@ -181,19 +181,22 @@ def fetch_team_fixtures(team_name: str, fd_api_key: str | None, fd_index: list) 
 
 def dedupe_fixtures(fixtures: list) -> list:
     """Wenn zwei gespeicherte Vereine gegeneinander spielen, taucht dasselbe
-    Spiel einmal im Abruf jedes der beiden Vereine auf. Hier rausfiltern,
-    identifiziert ueber Kalendertag + Vereins-Paar (unabhaengig von
-    Heim/Auswaerts-Reihenfolge).
+    Spiel einmal im Abruf jedes der beiden Vereine auf. Da kein Verein mehr
+    als ein Spiel am selben Tag hat, reicht es zu pruefen, ob Heim- ODER
+    Auswaertsteam an diesem Kalendertag schon in einem anderen Eintrag
+    vorkommt - robuster als ein exakter Vergleich beider Namen, falls eine
+    Quelle den Vereinsnamen mal leicht anders schreibt.
     """
-    seen = set()
+    seen_team_days = set()  # (Kalendertag, Vereinsname lowercase)
     result = []
     for f in fixtures:
         day = (f.get("kickoffUtc") or "")[:10]
-        pair = tuple(sorted([(f.get("homeTeam") or "").strip().lower(), (f.get("awayTeam") or "").strip().lower()]))
-        key = (day, pair)
-        if key in seen:
+        home = (f.get("homeTeam") or "").strip().lower()
+        away = (f.get("awayTeam") or "").strip().lower()
+        if (day, home) in seen_team_days or (day, away) in seen_team_days:
             continue
-        seen.add(key)
+        seen_team_days.add((day, home))
+        seen_team_days.add((day, away))
         result.append(f)
     return result
 

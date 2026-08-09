@@ -118,27 +118,25 @@ async function addFavorite(team) {
   }
 }
 
-// Team-Paar (unabhaengig von Heim/Auswaerts-Reihenfolge, Umlauten,
-// Gross-/Kleinschreibung) + Kalendertag statt exakter Uhrzeit: die
-// Sofort-Vorschau (TheSportsDB) und der spaetere Server-Abruf
-// (football-data.org) schreiben denselben Verein teils leicht anders
-// (z.B. "VfB Stuttgart" vs. "Stuttgart") und die Anstosszeit kann um ein
-// paar Minuten abweichen - ein exakter String-Vergleich haette dasselbe
-// Spiel faelschlich zweimal gelistet.
-function fixtureDedupeKey(f) {
+// Kalendertag + Vereinsname (Heim ODER Auswaerts) statt exaktem
+// Team-Paar-Vergleich: kein Verein spielt zweimal am selben Tag, daher
+// reicht es, wenn EINE Seite an dem Tag schon bekannt ist. Robuster als
+// ein Vergleich beider Namen, falls die Sofort-Vorschau (TheSportsDB) und
+// der spaetere Server-Abruf (football-data.org) denselben Verein leicht
+// unterschiedlich schreiben (z.B. "VfB Stuttgart" vs. "Stuttgart").
+function teamDayKeys(f) {
   const day = (f.kickoffUtc || "").slice(0, 10);
-  const teams = [normalizeTeamName(f.homeTeam), normalizeTeamName(f.awayTeam)].sort().join("|");
-  return `${day}::${teams}`;
+  return [`${day}::${normalizeTeamName(f.homeTeam)}`, `${day}::${normalizeTeamName(f.awayTeam)}`];
 }
 
 function mergeFixtures(newFixtures) {
-  const existingKeys = new Set(rawFixtures.map(fixtureDedupeKey));
+  const seen = new Set(rawFixtures.flatMap(teamDayKeys));
   for (const f of newFixtures) {
-    const key = fixtureDedupeKey(f);
-    if (!existingKeys.has(key)) {
-      rawFixtures.push(f);
-      existingKeys.add(key);
-    }
+    const [homeKey, awayKey] = teamDayKeys(f);
+    if (seen.has(homeKey) || seen.has(awayKey)) continue;
+    rawFixtures.push(f);
+    seen.add(homeKey);
+    seen.add(awayKey);
   }
   rawFixtures.sort((a, b) => (a.kickoffUtc || "").localeCompare(b.kickoffUtc || ""));
 }
