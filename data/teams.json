@@ -18,6 +18,18 @@
     "competition": "Bundesliga"
   },
   {
+    "name": "2 de Mayo",
+    "shortName": "2 de Mayo",
+    "country": "Paraguay",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "AA Argentinos Juniors",
+    "shortName": "Argentinos Jrs",
+    "country": "Argentina",
+    "competition": "Copa Libertadores"
+  },
+  {
     "name": "AC Milan",
     "shortName": "Milan",
     "country": "Italy",
@@ -114,6 +126,12 @@
     "competition": "UEFA Champions League"
   },
   {
+    "name": "Barcelona SC",
+    "shortName": "Barcelona SC",
+    "country": "Ecuador",
+    "competition": "Copa Libertadores"
+  },
+  {
     "name": "Bayer 04 Leverkusen",
     "shortName": "Leverkusen",
     "country": "Germany",
@@ -156,6 +174,12 @@
     "competition": "Bundesliga"
   },
   {
+    "name": "Botafogo FR",
+    "shortName": "Botafogo",
+    "country": "Brazil",
+    "competition": "Copa Libertadores"
+  },
+  {
     "name": "Brentford FC",
     "shortName": "Brentford",
     "country": "England",
@@ -180,10 +204,76 @@
     "competition": "Championship"
   },
   {
+    "name": "CA Boca Juniors",
+    "shortName": "Boca Juniors",
+    "country": "Argentina",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CA Lanús",
+    "shortName": "Lanús",
+    "country": "Argentina",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CA Mineiro",
+    "shortName": "Mineiro",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
     "name": "CA Osasuna",
     "shortName": "Osasuna",
     "country": "Spain",
     "competition": "Primera Division"
+  },
+  {
+    "name": "CA Paranaense",
+    "shortName": "Paranaense",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
+    "name": "CA Peñarol",
+    "shortName": "Peñarol",
+    "country": "Uruguay",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CA Platense",
+    "shortName": "Platense",
+    "country": "Argentina",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CA Rosario Central",
+    "shortName": "Rosario",
+    "country": "Argentina",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CAR Independiente del Valle",
+    "shortName": "Independiente",
+    "country": "Ecuador",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CD Coquimbo Unido",
+    "shortName": "Coquimbo Unido",
+    "country": "Chile",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CD Huachipato",
+    "shortName": "Huachipato",
+    "country": "Chile",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CD Independiente Medellín",
+    "shortName": "Independiente",
+    "country": "Colombia",
+    "competition": "Copa Libertadores"
   },
   {
     "name": "CD Nacional",
@@ -198,10 +288,52 @@
     "competition": "Primeira Liga"
   },
   {
+    "name": "CD Tolima",
+    "shortName": "Tolima",
+    "country": "Colombia",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CD Universidad Católica",
+    "shortName": "Univ Católica",
+    "country": "Chile",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CDP Junior FC",
+    "shortName": "Junior",
+    "country": "Colombia",
+    "competition": "Copa Libertadores"
+  },
+  {
     "name": "CF Estrela da Amadora",
     "shortName": "Amadora",
     "country": "Portugal",
     "competition": "Primeira Liga"
+  },
+  {
+    "name": "CR Flamengo",
+    "shortName": "Flamengo",
+    "country": "Brazil",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CR Vasco da Gama",
+    "shortName": "Vasco da Gama",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
+    "name": "CS Cristal",
+    "shortName": "Cristal",
+    "country": "Peru",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CS Independiente Rivadavia",
+    "shortName": "Rivadavia",
+    "country": "Argentina",
+    "competition": "Copa Libertadores"
   },
   {
     "name": "CS Marítimo",
@@ -216,6 +348,12 @@
     "competition": "Serie A"
   },
   {
+    "name": "Carabobo FC",
+    "shortName": "Carabobo",
+    "country": "Venezuela",
+    "competition": "Copa Libertadores"
+  },
+  {
     "name": "Cardiff City FC",
     "shortName": "Cardiff",
     "country": "Wales",
@@ -226,6 +364,12 @@
     "shortName": "Casa Pia",
     "country": "Portugal",
     "competition": "Primeira Liga"
+  },
+  {
+    "name": "Chapecoense AF",
+    "shortName": "Chapecoense",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
   },
   {
     "name": "Charlton Athletic FC",
@@ -240,10 +384,28 @@
     "competition": "UEFA Champions League"
   },
   {
+    "name": "Club Alianza Lima",
+    "shortName": "Alianza Lima",
+    "country": "Peru",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Club Always Ready",
+    "shortName": "Always Ready",
+    "country": "Bolivia",
+    "competition": "Copa Libertadores"
+  },
+  {
     "name": "Club Atlético de Madrid",
     "shortName": "Atleti",
     "country": "Spain",
     "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Club Bolívar",
+    "shortName": "Club Bolívar",
+    "country": "Bolivia",
+    "competition": "Copa Libertadores"
   },
   {
     "name": "Club Brugge KV",
@@ -252,10 +414,64 @@
     "competition": "UEFA Champions League"
   },
   {
+    "name": "Club Cerro Porteño",
+    "shortName": "Cerro Porteño",
+    "country": "Paraguay",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Club Guaraní",
+    "shortName": "Guaraní",
+    "country": "Paraguay",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Club Libertad Asuncion",
+    "shortName": "Libertad",
+    "country": "Paraguay",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Club Nacional Potosí",
+    "shortName": "Nac. Potosí",
+    "country": "Bolivia",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Club Nacional de Football",
+    "shortName": "Club Nacional",
+    "country": "Uruguay",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Club The Strongest",
+    "shortName": "The Strongest",
+    "country": "Bolivia",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Club Universitario de Deportes",
+    "shortName": "Universitario",
+    "country": "Peru",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Clube do Remo",
+    "shortName": "Clube do Remo",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
     "name": "Como 1907",
     "shortName": "Como 1907",
     "country": "Italy",
     "competition": "Serie A"
+  },
+  {
+    "name": "Coritiba FBC",
+    "shortName": "Coritiba",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
   },
   {
     "name": "Coventry City FC",
@@ -264,10 +480,22 @@
     "competition": "Premier League"
   },
   {
+    "name": "Cruzeiro EC",
+    "shortName": "Cruzeiro",
+    "country": "Brazil",
+    "competition": "Copa Libertadores"
+  },
+  {
     "name": "Crystal Palace FC",
     "shortName": "Crystal Palace",
     "country": "England",
     "competition": "Premier League"
+  },
+  {
+    "name": "Cusco FC",
+    "shortName": "Cusco",
+    "country": "Peru",
+    "competition": "Copa Libertadores"
   },
   {
     "name": "Deportivo Alavés",
@@ -276,10 +504,34 @@
     "competition": "Primera Division"
   },
   {
+    "name": "Deportivo La Guaira FC",
+    "shortName": "La Guaira",
+    "country": "Venezuela",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Deportivo Táchira FC",
+    "shortName": "Táchira",
+    "country": "Venezuela",
+    "competition": "Copa Libertadores"
+  },
+  {
     "name": "Derby County FC",
     "shortName": "Derby County",
     "country": "England",
     "competition": "Championship"
+  },
+  {
+    "name": "EC Bahia",
+    "shortName": "Bahia",
+    "country": "Brazil",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "EC Vitória",
+    "shortName": "Vitória",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
   },
   {
     "name": "ES Troyes AC",
@@ -298,6 +550,12 @@
     "shortName": "Elche",
     "country": "Spain",
     "competition": "Primera Division"
+  },
+  {
+    "name": "Estudiantes de La Plata",
+    "shortName": "Estudiantes LP",
+    "country": "Argentina",
+    "competition": "Copa Libertadores"
   },
   {
     "name": "Everton FC",
@@ -408,6 +666,12 @@
     "competition": "Eredivisie"
   },
   {
+    "name": "Fluminense FC",
+    "shortName": "Fluminense",
+    "country": "Brazil",
+    "competition": "Copa Libertadores"
+  },
+  {
     "name": "Fortuna Sittard",
     "shortName": "Sittard",
     "country": "Netherlands",
@@ -462,6 +726,12 @@
     "competition": "Eredivisie"
   },
   {
+    "name": "Grêmio FBPA",
+    "shortName": "Grêmio",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
     "name": "Hamburger SV",
     "shortName": "HSV",
     "country": "Germany",
@@ -474,16 +744,34 @@
     "competition": "Premier League"
   },
   {
+    "name": "Independiente Santa Fe",
+    "shortName": "Santa Fe",
+    "country": "Colombia",
+    "competition": "Copa Libertadores"
+  },
+  {
     "name": "Ipswich Town FC",
     "shortName": "Ipswich Town",
     "country": "England",
     "competition": "Premier League"
   },
   {
+    "name": "Juventud de Las Piedras",
+    "shortName": "CA Juventud",
+    "country": "Uruguay",
+    "competition": "Copa Libertadores"
+  },
+  {
     "name": "Juventus FC",
     "shortName": "Juventus",
     "country": "Italy",
     "competition": "UEFA Champions League"
+  },
+  {
+    "name": "LDU de Quito",
+    "shortName": "LDU de Quito",
+    "country": "Ecuador",
+    "competition": "Copa Libertadores"
   },
   {
     "name": "Le Havre AC",
@@ -528,6 +816,12 @@
     "competition": "UEFA Champions League"
   },
   {
+    "name": "Liverpool FC",
+    "shortName": "Liverpool",
+    "country": "Uruguay",
+    "competition": "Copa Libertadores"
+  },
+  {
     "name": "Manchester City FC",
     "shortName": "Man City",
     "country": "England",
@@ -550,6 +844,12 @@
     "shortName": "Millwall",
     "country": "England",
     "competition": "Championship"
+  },
+  {
+    "name": "Mirassol FC",
+    "shortName": "Mirassol",
+    "country": "Brazil",
+    "competition": "Copa Libertadores"
   },
   {
     "name": "Moreirense FC",
@@ -586,6 +886,12 @@
     "shortName": "Nottingham",
     "country": "England",
     "competition": "Premier League"
+  },
+  {
+    "name": "O'Higgins FC",
+    "shortName": "O'Higgins",
+    "country": "Chile",
+    "competition": "Copa Libertadores"
   },
   {
     "name": "OGC Nice",
@@ -670,6 +976,12 @@
     "shortName": "QPR",
     "country": "England",
     "competition": "Championship"
+  },
+  {
+    "name": "RB Bragantino",
+    "shortName": "Bragantino",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
   },
   {
     "name": "RB Leipzig",
@@ -762,6 +1074,12 @@
     "competition": "Eredivisie"
   },
   {
+    "name": "SC Corinthians Paulista",
+    "shortName": "Corinthians",
+    "country": "Brazil",
+    "competition": "Copa Libertadores"
+  },
+  {
     "name": "SC Freiburg",
     "shortName": "Freiburg",
     "country": "Germany",
@@ -774,10 +1092,22 @@
     "competition": "Eredivisie"
   },
   {
+    "name": "SC Internacional",
+    "shortName": "Internacional",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
     "name": "SC Paderborn 07",
     "shortName": "SC Paderborn",
     "country": "Germany",
     "competition": "Bundesliga"
+  },
+  {
+    "name": "SE Palmeiras",
+    "shortName": "Palmeiras",
+    "country": "Brazil",
+    "competition": "Copa Libertadores"
   },
   {
     "name": "SK Slavia Praha",
@@ -808,6 +1138,12 @@
     "shortName": "Bremen",
     "country": "Germany",
     "competition": "Bundesliga"
+  },
+  {
+    "name": "Santos FC",
+    "shortName": "Santos",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
   },
   {
     "name": "Sevilla FC",
@@ -882,6 +1218,12 @@
     "competition": "Championship"
   },
   {
+    "name": "São Paulo FC",
+    "shortName": "São Paulo",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
     "name": "TSG 1899 Hoffenheim",
     "shortName": "Hoffenheim",
     "country": "Germany",
@@ -928,6 +1270,18 @@
     "shortName": "Udinese",
     "country": "Italy",
     "competition": "Serie A"
+  },
+  {
+    "name": "Universidad Catolica",
+    "shortName": "Universidad Catolica",
+    "country": "Ecuador",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Universidad Central de Venezuela FC",
+    "shortName": "Universidad Central",
+    "country": "Venezuela",
+    "competition": "Copa Libertadores"
   },
   {
     "name": "Valencia CF",
