@@ -12,6 +12,7 @@ if ("serviceWorker" in navigator) {
 
 let currentUid = null;
 let favoriteTeams = [];
+let rawFixtures = [];
 
 const authScreen = document.getElementById("auth-screen");
 const appScreen = document.getElementById("app-screen");
@@ -39,7 +40,8 @@ async function onLogin(user) {
 
   favoriteTeams = await loadFavoriteTeams(currentUid);
   renderFavorites();
-  loadFixtures().then(renderFixtures);
+  rawFixtures = await loadFixtures();
+  refreshFixturesView();
 }
 
 function onLogout() {
@@ -71,6 +73,7 @@ function renderFavorites() {
       const index = Number(btn.dataset.index);
       favoriteTeams.splice(index, 1);
       renderFavorites();
+      refreshFixturesView();
       await saveFavoriteTeams(currentUid, favoriteTeams);
     });
   });
@@ -90,6 +93,7 @@ async function addFavorite(team) {
   addFavoriteInput.value = "";
   hideSuggestions();
   renderFavorites();
+  refreshFixturesView();
   debugStatus(`"${team}" lokal hinzugefuegt, speichere jetzt online...`);
   try {
     await saveFavoriteTeams(currentUid, favoriteTeams);
@@ -195,10 +199,42 @@ function formatKickoff(isoString) {
   }).format(date);
 }
 
+// Entfernt Umlaute/Akzente und Gross-/Kleinschreibung, damit z.B. "koeln"
+// oder "real madrid" (wie eingetippt) auf "1. FC Köln" bzw. "Real Madrid CF"
+// (offizielle Namen aus den Spieldaten) matchen.
+function normalizeTeamName(s) {
+  return (s || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "");
+}
+
+function teamMatches(favorite, teamName) {
+  const f = normalizeTeamName(favorite);
+  const t = normalizeTeamName(teamName);
+  if (!f || !t) return false;
+  return t.includes(f) || f.includes(t);
+}
+
+function filterFixturesForFavorites(fixtures) {
+  if (!favoriteTeams.length) return [];
+  return fixtures.filter((f) =>
+    favoriteTeams.some((fav) => teamMatches(fav, f.homeTeam) || teamMatches(fav, f.awayTeam))
+  );
+}
+
+function refreshFixturesView() {
+  renderFixtures(filterFixturesForFavorites(rawFixtures));
+}
+
 function renderFixtures(fixtures) {
   const container = document.getElementById("fixtures-list");
+  if (!favoriteTeams.length) {
+    container.innerHTML = `<div class="empty-state"><p>Füge oben einen Verein hinzu, um hier seine Spiele zu sehen.</p></div>`;
+    return;
+  }
   if (!fixtures.length) {
-    container.innerHTML = `<div class="empty-state"><p>Noch keine Spiele geladen.</p></div>`;
+    container.innerHTML = `<div class="empty-state"><p>Für deine gespeicherten Vereine sind noch keine Spiele hinterlegt. Der automatische Abruf läuft einmal täglich.</p></div>`;
     return;
   }
 
