@@ -13,6 +13,7 @@ Benoetigt die Umgebungsvariable API_FOOTBALL_KEY (GitHub Actions Secret).
 import json
 import os
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
@@ -26,6 +27,7 @@ TEAMS = [
     "VfB Stuttgart",
 ]
 
+SEASON = 2026  # Saison 2026/27
 NEXT_N_FIXTURES = 5
 
 
@@ -55,9 +57,19 @@ def find_team_id(team_name: str, api_key: str):
     return team["id"]
 
 
-def fetch_next_fixtures(team_id: int, api_key: str) -> list:
-    data = api_get("/fixtures", {"team": team_id, "next": NEXT_N_FIXTURES}, api_key)
-    return data.get("response", [])
+def fetch_upcoming_fixtures(team_id: int, api_key: str) -> list:
+    # Der "next"-Parameter ist im Free Plan von API-Football gesperrt, daher
+    # holen wir den kompletten Saisonplan und filtern clientseitig auf
+    # kommende Spiele.
+    data = api_get("/fixtures", {"team": team_id, "season": SEASON}, api_key)
+    all_matches = data.get("response", [])
+    now = datetime.now(timezone.utc)
+    upcoming = [
+        m for m in all_matches
+        if datetime.fromisoformat(m["fixture"]["date"]) > now
+    ]
+    upcoming.sort(key=lambda m: m["fixture"]["date"])
+    return upcoming[:NEXT_N_FIXTURES]
 
 
 def to_fixture_dict(raw: dict) -> dict:
@@ -84,7 +96,7 @@ def main():
         team_id = find_team_id(team_name, api_key)
         if team_id is None:
             continue
-        raw_fixtures = fetch_next_fixtures(team_id, api_key)
+        raw_fixtures = fetch_upcoming_fixtures(team_id, api_key)
         print(f"[INFO] {team_name}: {len(raw_fixtures)} kommende Spiele gefunden")
         all_fixtures.extend(to_fixture_dict(f) for f in raw_fixtures)
 
