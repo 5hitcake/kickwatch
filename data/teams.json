@@ -1,1 +1,1352 @@
-[]
+[
+  {
+    "name": "1. FC Köln",
+    "shortName": "1. FC Köln",
+    "country": "Germany",
+    "competition": "Bundesliga"
+  },
+  {
+    "name": "1. FC Union Berlin",
+    "shortName": "Union Berlin",
+    "country": "Germany",
+    "competition": "Bundesliga"
+  },
+  {
+    "name": "1. FSV Mainz 05",
+    "shortName": "Mainz",
+    "country": "Germany",
+    "competition": "Bundesliga"
+  },
+  {
+    "name": "2 de Mayo",
+    "shortName": "2 de Mayo",
+    "country": "Paraguay",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "AA Argentinos Juniors",
+    "shortName": "Argentinos Jrs",
+    "country": "Argentina",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "AC Milan",
+    "shortName": "Milan",
+    "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "AC Monza",
+    "shortName": "Monza",
+    "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "ACF Fiorentina",
+    "shortName": "Fiorentina",
+    "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "ADO Den Haag",
+    "shortName": "Den Haag",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "AFC Ajax",
+    "shortName": "Ajax",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "AFC Bournemouth",
+    "shortName": "Bournemouth",
+    "country": "England",
+    "competition": "Premier League"
+  },
+  {
+    "name": "AJ Auxerre",
+    "shortName": "Auxerre",
+    "country": "France",
+    "competition": "Ligue 1"
+  },
+  {
+    "name": "AS Monaco FC",
+    "shortName": "Monaco",
+    "country": "Monaco",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "AS Roma",
+    "shortName": "Roma",
+    "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "AZ",
+    "shortName": "AZ",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "Académico de Viseu FC",
+    "shortName": "Acad. Viseu",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "Angers SCO",
+    "shortName": "Angers SCO",
+    "country": "France",
+    "competition": "Ligue 1"
+  },
+  {
+    "name": "Arsenal FC",
+    "shortName": "Arsenal",
+    "country": "England",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Aston Villa FC",
+    "shortName": "Aston Villa",
+    "country": "England",
+    "competition": "Premier League"
+  },
+  {
+    "name": "Atalanta BC",
+    "shortName": "Atalanta",
+    "country": "Italy",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Athletic Club",
+    "shortName": "Athletic",
+    "country": "Spain",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Barcelona SC",
+    "shortName": "Barcelona SC",
+    "country": "Ecuador",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Bayer 04 Leverkusen",
+    "shortName": "Leverkusen",
+    "country": "Germany",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Birmingham City FC",
+    "shortName": "Birmingham",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "Blackburn Rovers FC",
+    "shortName": "Blackburn",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "Bologna FC 1909",
+    "shortName": "Bologna",
+    "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "Bolton Wanderers FC",
+    "shortName": "Bolton",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "Borussia Dortmund",
+    "shortName": "Dortmund",
+    "country": "Germany",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Borussia Mönchengladbach",
+    "shortName": "M'gladbach",
+    "country": "Germany",
+    "competition": "Bundesliga"
+  },
+  {
+    "name": "Botafogo FR",
+    "shortName": "Botafogo",
+    "country": "Brazil",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Brentford FC",
+    "shortName": "Brentford",
+    "country": "England",
+    "competition": "Premier League"
+  },
+  {
+    "name": "Brighton & Hove Albion FC",
+    "shortName": "Brighton Hove",
+    "country": "England",
+    "competition": "Premier League"
+  },
+  {
+    "name": "Bristol City FC",
+    "shortName": "Bristol City",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "Burnley FC",
+    "shortName": "Burnley",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "CA Boca Juniors",
+    "shortName": "Boca Juniors",
+    "country": "Argentina",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CA Lanús",
+    "shortName": "Lanús",
+    "country": "Argentina",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CA Mineiro",
+    "shortName": "Mineiro",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
+    "name": "CA Osasuna",
+    "shortName": "Osasuna",
+    "country": "Spain",
+    "competition": "Primera Division"
+  },
+  {
+    "name": "CA Paranaense",
+    "shortName": "Paranaense",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
+    "name": "CA Peñarol",
+    "shortName": "Peñarol",
+    "country": "Uruguay",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CA Platense",
+    "shortName": "Platense",
+    "country": "Argentina",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CA Rosario Central",
+    "shortName": "Rosario",
+    "country": "Argentina",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CAR Independiente del Valle",
+    "shortName": "Independiente",
+    "country": "Ecuador",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CD Coquimbo Unido",
+    "shortName": "Coquimbo Unido",
+    "country": "Chile",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CD Huachipato",
+    "shortName": "Huachipato",
+    "country": "Chile",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CD Independiente Medellín",
+    "shortName": "Independiente",
+    "country": "Colombia",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CD Nacional",
+    "shortName": "CD Nacional",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "CD Santa Clara",
+    "shortName": "Santa Clara",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "CD Tolima",
+    "shortName": "Tolima",
+    "country": "Colombia",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CD Universidad Católica",
+    "shortName": "Univ Católica",
+    "country": "Chile",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CDP Junior FC",
+    "shortName": "Junior",
+    "country": "Colombia",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CF Estrela da Amadora",
+    "shortName": "Amadora",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "CR Flamengo",
+    "shortName": "Flamengo",
+    "country": "Brazil",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CR Vasco da Gama",
+    "shortName": "Vasco da Gama",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
+    "name": "CS Cristal",
+    "shortName": "Cristal",
+    "country": "Peru",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CS Independiente Rivadavia",
+    "shortName": "Rivadavia",
+    "country": "Argentina",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "CS Marítimo",
+    "shortName": "Marítimo",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "Cagliari Calcio",
+    "shortName": "Cagliari",
+    "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "Carabobo FC",
+    "shortName": "Carabobo",
+    "country": "Venezuela",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Cardiff City FC",
+    "shortName": "Cardiff",
+    "country": "Wales",
+    "competition": "Championship"
+  },
+  {
+    "name": "Casa Pia AC",
+    "shortName": "Casa Pia",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "Chapecoense AF",
+    "shortName": "Chapecoense",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
+    "name": "Charlton Athletic FC",
+    "shortName": "Charlton",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "Chelsea FC",
+    "shortName": "Chelsea",
+    "country": "England",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Club Alianza Lima",
+    "shortName": "Alianza Lima",
+    "country": "Peru",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Club Always Ready",
+    "shortName": "Always Ready",
+    "country": "Bolivia",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Club Atlético de Madrid",
+    "shortName": "Atleti",
+    "country": "Spain",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Club Bolívar",
+    "shortName": "Club Bolívar",
+    "country": "Bolivia",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Club Brugge KV",
+    "shortName": "Club Brugge",
+    "country": "Belgium",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Club Cerro Porteño",
+    "shortName": "Cerro Porteño",
+    "country": "Paraguay",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Club Guaraní",
+    "shortName": "Guaraní",
+    "country": "Paraguay",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Club Libertad Asuncion",
+    "shortName": "Libertad",
+    "country": "Paraguay",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Club Nacional Potosí",
+    "shortName": "Nac. Potosí",
+    "country": "Bolivia",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Club Nacional de Football",
+    "shortName": "Club Nacional",
+    "country": "Uruguay",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Club The Strongest",
+    "shortName": "The Strongest",
+    "country": "Bolivia",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Club Universitario de Deportes",
+    "shortName": "Universitario",
+    "country": "Peru",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Clube do Remo",
+    "shortName": "Clube do Remo",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
+    "name": "Como 1907",
+    "shortName": "Como 1907",
+    "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "Coritiba FBC",
+    "shortName": "Coritiba",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
+    "name": "Coventry City FC",
+    "shortName": "Coventry City",
+    "country": "England",
+    "competition": "Premier League"
+  },
+  {
+    "name": "Cruzeiro EC",
+    "shortName": "Cruzeiro",
+    "country": "Brazil",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Crystal Palace FC",
+    "shortName": "Crystal Palace",
+    "country": "England",
+    "competition": "Premier League"
+  },
+  {
+    "name": "Cusco FC",
+    "shortName": "Cusco",
+    "country": "Peru",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Deportivo Alavés",
+    "shortName": "Alavés",
+    "country": "Spain",
+    "competition": "Primera Division"
+  },
+  {
+    "name": "Deportivo La Guaira FC",
+    "shortName": "La Guaira",
+    "country": "Venezuela",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Deportivo Táchira FC",
+    "shortName": "Táchira",
+    "country": "Venezuela",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Derby County FC",
+    "shortName": "Derby County",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "EC Bahia",
+    "shortName": "Bahia",
+    "country": "Brazil",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "EC Vitória",
+    "shortName": "Vitória",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
+    "name": "ES Troyes AC",
+    "shortName": "Troyes",
+    "country": "France",
+    "competition": "Ligue 1"
+  },
+  {
+    "name": "Eintracht Frankfurt",
+    "shortName": "Frankfurt",
+    "country": "Germany",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Elche CF",
+    "shortName": "Elche",
+    "country": "Spain",
+    "competition": "Primera Division"
+  },
+  {
+    "name": "Estudiantes de La Plata",
+    "shortName": "Estudiantes LP",
+    "country": "Argentina",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Everton FC",
+    "shortName": "Everton",
+    "country": "England",
+    "competition": "Premier League"
+  },
+  {
+    "name": "FC Alverca",
+    "shortName": "Alverca",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "FC Arouca",
+    "shortName": "Arouca",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "FC Augsburg",
+    "shortName": "Augsburg",
+    "country": "Germany",
+    "competition": "Bundesliga"
+  },
+  {
+    "name": "FC Barcelona",
+    "shortName": "Barça",
+    "country": "Spain",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "FC Bayern München",
+    "shortName": "Bayern",
+    "country": "Germany",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "FC Famalicão",
+    "shortName": "Famalicão",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "FC Groningen",
+    "shortName": "Groningen",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "FC Internazionale Milano",
+    "shortName": "Inter",
+    "country": "Italy",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "FC København",
+    "shortName": "København",
+    "country": "Denmark",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "FC Lorient",
+    "shortName": "Lorient",
+    "country": "France",
+    "competition": "Ligue 1"
+  },
+  {
+    "name": "FC Porto",
+    "shortName": "Porto",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "FC Schalke 04",
+    "shortName": "Schalke",
+    "country": "Germany",
+    "competition": "Bundesliga"
+  },
+  {
+    "name": "FC Twente '65",
+    "shortName": "Twente",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "FC Utrecht",
+    "shortName": "Utrecht",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "FK Bodø/Glimt",
+    "shortName": "Bodø/Glimt",
+    "country": "Norway",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "FK Kairat",
+    "shortName": "FK Kairat",
+    "country": "Kazakhstan",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Feyenoord Rotterdam",
+    "shortName": "Feyenoord",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "Fluminense FC",
+    "shortName": "Fluminense",
+    "country": "Brazil",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Fortuna Sittard",
+    "shortName": "Sittard",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "Frosinone Calcio",
+    "shortName": "Frosinone",
+    "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "Fulham FC",
+    "shortName": "Fulham",
+    "country": "England",
+    "competition": "Premier League"
+  },
+  {
+    "name": "GD Estoril Praia",
+    "shortName": "Estoril Praia",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "Galatasaray SK",
+    "shortName": "Galatasaray",
+    "country": "Turkey",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Genoa CFC",
+    "shortName": "Genoa",
+    "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "Getafe CF",
+    "shortName": "Getafe",
+    "country": "Spain",
+    "competition": "Primera Division"
+  },
+  {
+    "name": "Gil Vicente FC",
+    "shortName": "Gil Vicente",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "Go Ahead Eagles",
+    "shortName": "Go Ahead",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "Grêmio FBPA",
+    "shortName": "Grêmio",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
+    "name": "Hamburger SV",
+    "shortName": "HSV",
+    "country": "Germany",
+    "competition": "Bundesliga"
+  },
+  {
+    "name": "Hull City AFC",
+    "shortName": "Hull City",
+    "country": "England",
+    "competition": "Premier League"
+  },
+  {
+    "name": "Independiente Santa Fe",
+    "shortName": "Santa Fe",
+    "country": "Colombia",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Ipswich Town FC",
+    "shortName": "Ipswich Town",
+    "country": "England",
+    "competition": "Premier League"
+  },
+  {
+    "name": "Juventud de Las Piedras",
+    "shortName": "CA Juventud",
+    "country": "Uruguay",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Juventus FC",
+    "shortName": "Juventus",
+    "country": "Italy",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "LDU de Quito",
+    "shortName": "LDU de Quito",
+    "country": "Ecuador",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Le Havre AC",
+    "shortName": "Le Havre",
+    "country": "France",
+    "competition": "Ligue 1"
+  },
+  {
+    "name": "Le Mans FC",
+    "shortName": "Le Mans",
+    "country": "France",
+    "competition": "Ligue 1"
+  },
+  {
+    "name": "Leeds United FC",
+    "shortName": "Leeds United",
+    "country": "England",
+    "competition": "Premier League"
+  },
+  {
+    "name": "Levante UD",
+    "shortName": "Levante",
+    "country": "Spain",
+    "competition": "Primera Division"
+  },
+  {
+    "name": "Lille OSC",
+    "shortName": "Lille",
+    "country": "France",
+    "competition": "Ligue 1"
+  },
+  {
+    "name": "Lincoln City FC",
+    "shortName": "Lincoln City",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "Liverpool FC",
+    "shortName": "Liverpool",
+    "country": "England",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Liverpool FC",
+    "shortName": "Liverpool",
+    "country": "Uruguay",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Manchester City FC",
+    "shortName": "Man City",
+    "country": "England",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Manchester United FC",
+    "shortName": "Man United",
+    "country": "England",
+    "competition": "Premier League"
+  },
+  {
+    "name": "Middlesbrough FC",
+    "shortName": "Middlesbrough",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "Millwall FC",
+    "shortName": "Millwall",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "Mirassol FC",
+    "shortName": "Mirassol",
+    "country": "Brazil",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Moreirense FC",
+    "shortName": "Moreirense",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "Málaga CF",
+    "shortName": "Málaga",
+    "country": "Spain",
+    "competition": "Primera Division"
+  },
+  {
+    "name": "NEC",
+    "shortName": "NEC",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "Newcastle United FC",
+    "shortName": "Newcastle",
+    "country": "England",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Norwich City FC",
+    "shortName": "Norwich",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "Nottingham Forest FC",
+    "shortName": "Nottingham",
+    "country": "England",
+    "competition": "Premier League"
+  },
+  {
+    "name": "O'Higgins FC",
+    "shortName": "O'Higgins",
+    "country": "Chile",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "OGC Nice",
+    "shortName": "Nice",
+    "country": "France",
+    "competition": "Ligue 1"
+  },
+  {
+    "name": "Olympique Lyonnais",
+    "shortName": "Olympique Lyon",
+    "country": "France",
+    "competition": "Ligue 1"
+  },
+  {
+    "name": "Olympique de Marseille",
+    "shortName": "Marseille",
+    "country": "France",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "PAE Olympiakos SFP",
+    "shortName": "Olympiakos",
+    "country": "Greece",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "PEC Zwolle",
+    "shortName": "Zwolle",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "PSV",
+    "shortName": "PSV",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "Paphos FC",
+    "shortName": "Paphos FC",
+    "country": "Cyprus",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Paris FC",
+    "shortName": "Paris FC",
+    "country": "France",
+    "competition": "Ligue 1"
+  },
+  {
+    "name": "Paris Saint-Germain FC",
+    "shortName": "PSG",
+    "country": "France",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Parma Calcio 1913",
+    "shortName": "Parma",
+    "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "Portsmouth FC",
+    "shortName": "Portsmouth",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "Preston North End FC",
+    "shortName": "Preston NE",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "Qarabağ Ağdam FK",
+    "shortName": "Qarabağ Ağdam",
+    "country": "Azerbaijan",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Queens Park Rangers FC",
+    "shortName": "QPR",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "RB Bragantino",
+    "shortName": "Bragantino",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
+    "name": "RB Leipzig",
+    "shortName": "RB Leipzig",
+    "country": "Germany",
+    "competition": "Bundesliga"
+  },
+  {
+    "name": "RC Celta de Vigo",
+    "shortName": "Celta",
+    "country": "Spain",
+    "competition": "Primera Division"
+  },
+  {
+    "name": "RC Deportivo La Coruña",
+    "shortName": "Deportivo",
+    "country": "Spain",
+    "competition": "Primera Division"
+  },
+  {
+    "name": "RC Strasbourg Alsace",
+    "shortName": "Strasbourg",
+    "country": "France",
+    "competition": "Ligue 1"
+  },
+  {
+    "name": "RCD Espanyol de Barcelona",
+    "shortName": "Espanyol",
+    "country": "Spain",
+    "competition": "Primera Division"
+  },
+  {
+    "name": "Racing Club de Lens",
+    "shortName": "RC Lens",
+    "country": "France",
+    "competition": "Ligue 1"
+  },
+  {
+    "name": "Rayo Vallecano de Madrid",
+    "shortName": "Rayo Vallecano",
+    "country": "Spain",
+    "competition": "Primera Division"
+  },
+  {
+    "name": "Real Betis Balompié",
+    "shortName": "Real Betis",
+    "country": "Spain",
+    "competition": "Primera Division"
+  },
+  {
+    "name": "Real Madrid CF",
+    "shortName": "Real Madrid",
+    "country": "Spain",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Real Racing Club de Santander",
+    "shortName": "Santander",
+    "country": "Spain",
+    "competition": "Primera Division"
+  },
+  {
+    "name": "Real Sociedad de Fútbol",
+    "shortName": "Real Sociedad",
+    "country": "Spain",
+    "competition": "Primera Division"
+  },
+  {
+    "name": "Rio Ave FC",
+    "shortName": "Rio Ave",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "Royale Union Saint-Gilloise",
+    "shortName": "Union SG",
+    "country": "Belgium",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "SBV Excelsior",
+    "shortName": "Excelsior",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "SC Cambuur-Leeuwarden",
+    "shortName": "Cambuur",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "SC Corinthians Paulista",
+    "shortName": "Corinthians",
+    "country": "Brazil",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "SC Freiburg",
+    "shortName": "Freiburg",
+    "country": "Germany",
+    "competition": "Bundesliga"
+  },
+  {
+    "name": "SC Heerenveen",
+    "shortName": "Heerenveen",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "SC Internacional",
+    "shortName": "Internacional",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
+    "name": "SC Paderborn 07",
+    "shortName": "SC Paderborn",
+    "country": "Germany",
+    "competition": "Bundesliga"
+  },
+  {
+    "name": "SE Palmeiras",
+    "shortName": "Palmeiras",
+    "country": "Brazil",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "SK Slavia Praha",
+    "shortName": "Slavia Praha",
+    "country": "Czech Republic",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "SS Lazio",
+    "shortName": "Lazio",
+    "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "SSC Napoli",
+    "shortName": "Napoli",
+    "country": "Italy",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "SV 07 Elversberg",
+    "shortName": "Elversberg",
+    "country": "Germany",
+    "competition": "Bundesliga"
+  },
+  {
+    "name": "SV Werder Bremen",
+    "shortName": "Bremen",
+    "country": "Germany",
+    "competition": "Bundesliga"
+  },
+  {
+    "name": "Santos FC",
+    "shortName": "Santos",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
+    "name": "Sevilla FC",
+    "shortName": "Sevilla FC",
+    "country": "Spain",
+    "competition": "Primera Division"
+  },
+  {
+    "name": "Sheffield United FC",
+    "shortName": "Sheffield Utd",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "Southampton FC",
+    "shortName": "Southampton",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "Sparta Rotterdam",
+    "shortName": "Sparta",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "Sport Lisboa e Benfica",
+    "shortName": "SL Benfica",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "Sporting Clube de Braga",
+    "shortName": "Braga",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "Sporting Clube de Portugal",
+    "shortName": "Sporting CP",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "Stade Brestois 29",
+    "shortName": "Brest",
+    "country": "France",
+    "competition": "Ligue 1"
+  },
+  {
+    "name": "Stade Rennais FC 1901",
+    "shortName": "Stade Rennais",
+    "country": "France",
+    "competition": "Ligue 1"
+  },
+  {
+    "name": "Stoke City FC",
+    "shortName": "Stoke",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "Sunderland AFC",
+    "shortName": "Sunderland",
+    "country": "England",
+    "competition": "Premier League"
+  },
+  {
+    "name": "Swansea City AFC",
+    "shortName": "Swansea",
+    "country": "Wales",
+    "competition": "Championship"
+  },
+  {
+    "name": "São Paulo FC",
+    "shortName": "São Paulo",
+    "country": "Brazil",
+    "competition": "Campeonato Brasileiro Série A"
+  },
+  {
+    "name": "TSG 1899 Hoffenheim",
+    "shortName": "Hoffenheim",
+    "country": "Germany",
+    "competition": "Bundesliga"
+  },
+  {
+    "name": "Telstar 1963",
+    "shortName": "Telstar",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "Torino FC",
+    "shortName": "Torino",
+    "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "Tottenham Hotspur FC",
+    "shortName": "Tottenham",
+    "country": "England",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Toulouse FC",
+    "shortName": "Toulouse",
+    "country": "France",
+    "competition": "Ligue 1"
+  },
+  {
+    "name": "US Lecce",
+    "shortName": "Lecce",
+    "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "US Sassuolo Calcio",
+    "shortName": "Sassuolo",
+    "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "Udinese Calcio",
+    "shortName": "Udinese",
+    "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "Universidad Catolica",
+    "shortName": "Universidad Catolica",
+    "country": "Ecuador",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Universidad Central de Venezuela FC",
+    "shortName": "Universidad Central",
+    "country": "Venezuela",
+    "competition": "Copa Libertadores"
+  },
+  {
+    "name": "Valencia CF",
+    "shortName": "Valencia",
+    "country": "Spain",
+    "competition": "Primera Division"
+  },
+  {
+    "name": "Venezia FC",
+    "shortName": "Venezia FC",
+    "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "VfB Stuttgart",
+    "shortName": "Stuttgart",
+    "country": "Germany",
+    "competition": "Bundesliga"
+  },
+  {
+    "name": "Villarreal CF",
+    "shortName": "Villarreal",
+    "country": "Spain",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Vitória SC",
+    "shortName": "Vitória SC",
+    "country": "Portugal",
+    "competition": "Primeira Liga"
+  },
+  {
+    "name": "Watford FC",
+    "shortName": "Watford",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "West Bromwich Albion FC",
+    "shortName": "West Brom",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "West Ham United FC",
+    "shortName": "West Ham",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "Willem II Tilburg",
+    "shortName": "Willem II",
+    "country": "Netherlands",
+    "competition": "Eredivisie"
+  },
+  {
+    "name": "Wolverhampton Wanderers FC",
+    "shortName": "Wolverhampton",
+    "country": "England",
+    "competition": "Championship"
+  },
+  {
+    "name": "Wrexham AFC",
+    "shortName": "Wrexham",
+    "country": "Wales",
+    "competition": "Championship"
+  }
+]
