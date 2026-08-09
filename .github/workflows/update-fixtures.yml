@@ -43,5 +43,16 @@ jobs:
             echo "Keine Aenderungen am Spielplan."
           else
             git commit -m "Spielplan-Update ($(date -u +'%Y-%m-%d %H:%M UTC'))"
-            git push
+            # Falls zwischenzeitlich (z.B. durch einen manuellen Push) neue
+            # Commits auf main gelandet sind, einmal rebasen und erneut
+            # versuchen, statt den ganzen Lauf an einem einfachen
+            # "fetch first"-Konflikt scheitern zu lassen.
+            for attempt in 1 2 3; do
+              if git push; then
+                break
+              fi
+              echo "Push fehlgeschlagen (Versuch $attempt), rebase auf origin/main und erneut versuchen..."
+              git fetch origin main
+              git rebase origin/main
+            done
           fi
