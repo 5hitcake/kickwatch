@@ -1,6 +1,5 @@
 import { initAuthUI } from "./auth.js";
 import { loadFavoriteTeams, saveFavoriteTeams } from "./favorites.js";
-import { searchTeams } from "./team-search.js";
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
@@ -20,7 +19,6 @@ const userEmailLabel = document.getElementById("user-email");
 const favoritesList = document.getElementById("favorites-list");
 const addFavoriteForm = document.getElementById("add-favorite-form");
 const addFavoriteInput = document.getElementById("add-favorite-input");
-const favoriteSuggestions = document.getElementById("favorite-suggestions");
 
 async function onLogin(user) {
   currentUid = user.uid;
@@ -71,15 +69,12 @@ async function addFavorite(team) {
   if (!team || favoriteTeams.includes(team)) return;
   favoriteTeams.push(team);
   addFavoriteInput.value = "";
-  hideSuggestions();
   renderFavorites();
   await saveFavoriteTeams(currentUid, favoriteTeams);
 }
 
-// Speichert immer genau das, was eingetippt wurde - keine Sonderlogik.
-// Die Vorschlagsliste ist nur eine optionale Abkuerzung (antippen fuegt
-// den offiziellen Namen direkt hinzu), aendert aber nie, was beim
-// Bestaetigen per Button/Enter gespeichert wird.
+// Speichert immer genau das, was eingetippt wurde - kein Vorschlags-Dropdown,
+// kein Zwischenschritt. Eintippen + Bestaetigen fuegt direkt zur Liste hinzu.
 async function submitTypedTeam() {
   await addFavorite(addFavoriteInput.value.trim());
 }
@@ -97,52 +92,6 @@ addFavoriteInput.addEventListener("keydown", (event) => {
     event.preventDefault();
     submitTypedTeam();
   }
-});
-
-function hideSuggestions() {
-  favoriteSuggestions.hidden = true;
-  favoriteSuggestions.innerHTML = "";
-}
-
-function renderSuggestions(teams) {
-  if (!teams.length) {
-    hideSuggestions();
-    return;
-  }
-  favoriteSuggestions.innerHTML = teams
-    .map(
-      (t) => `
-      <button type="button" class="suggestion-item" data-name="${t.name}">
-        ${t.name}
-        <div class="suggestion-meta">${[t.league, t.country].filter(Boolean).join(" · ")}</div>
-      </button>`
-    )
-    .join("");
-  favoriteSuggestions.hidden = false;
-
-  favoriteSuggestions.querySelectorAll(".suggestion-item").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      addFavorite(btn.dataset.name);
-    });
-  });
-}
-
-let searchDebounce;
-addFavoriteInput.addEventListener("input", () => {
-  clearTimeout(searchDebounce);
-  const query = addFavoriteInput.value;
-  searchDebounce = setTimeout(async () => {
-    const teams = await searchTeams(query);
-    renderSuggestions(teams);
-  }, 300);
-});
-
-// Vorschlagsliste nur schliessen, wenn ausserhalb von Eingabefeld und Liste
-// getippt/geklickt wird - robuster auf Touch-Geraeten als das blur-Event,
-// das bei manchen mobilen Browsern vor dem Tap auf einen Vorschlag feuert.
-document.addEventListener("click", (event) => {
-  if (event.target === addFavoriteInput || favoriteSuggestions.contains(event.target)) return;
-  hideSuggestions();
 });
 
 async function loadFixtures() {

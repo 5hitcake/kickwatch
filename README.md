@@ -62,7 +62,7 @@ manifest.json        PWA-Manifest (App-Name, Icons, Theme)
 service-worker.js     Offline-Fähigkeit / Installierbarkeit
 css/style.css         Styles
 js/app.js             App-Logik (Auth-Gate, Favoriten-UI, Spielplan-Anzeige)
-js/auth.js            Login-UI-Logik (Google-Redirect, E-Mail-Link)
+js/auth.js            Login-UI-Logik (Google-Popup, E-Mail-Link)
 js/favorites.js        Firestore-Zugriff für Lieblingsvereine
 js/firebase-init.js    Firebase SDK Initialisierung
 js/firebase-config.js  Firebase-Projektkonfiguration (öffentlich, kein Geheimnis)
