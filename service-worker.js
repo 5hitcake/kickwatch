@@ -1,4 +1,4 @@
-const CACHE_NAME = "kickwatch-shell-v5";
+const CACHE_NAME = "kickwatch-shell-v6";
 const SHELL_FILES = [
   "./",
   "index.html",
@@ -30,14 +30,16 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Network-first: waehrend der aktiven Entwicklung soll immer die neueste
-// Version geladen werden. Nur wenn das Netzwerk nicht erreichbar ist,
-// greift der Cache als Offline-Fallback.
+// Network-first UND am normalen HTTP-Cache des Browsers vorbei
+// (cache: "no-store") - waehrend der aktiven Entwicklung soll wirklich
+// immer die neueste Version vom Server kommen, nicht aus irgendeinem
+// Zwischenspeicher. Nur wenn das Netzwerk gar nicht erreichbar ist,
+// greift der Service-Worker-Cache als Offline-Fallback.
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
   event.respondWith(
-    fetch(event.request)
+    fetch(event.request, { cache: "no-store" })
       .then((response) => {
         const copy = response.clone();
         caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
