@@ -1,6 +1,6 @@
 import { initAuthUI } from "./auth.js";
 import { loadFavoriteTeams, saveFavoriteTeams } from "./favorites.js";
-import { searchTeams } from "./team-search.js";
+import { searchTeams, fetchTeamFixturesPreview } from "./team-search.js";
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
@@ -106,6 +106,31 @@ async function addFavorite(team) {
   } catch (err) {
     debugStatus(`Fehler beim Speichern von "${team}": ${err && err.message ? err.message : err}`);
   }
+
+  // Nicht auf den taeglichen Server-Abruf warten: sofort eine Vorschau der
+  // naechsten Spiele fuer den neuen Verein laden, damit er direkt in der
+  // Uebersicht auftaucht statt erst bis zu 24 Stunden spaeter.
+  const preview = await fetchTeamFixturesPreview(team);
+  if (preview.length) {
+    mergeFixtures(preview);
+    refreshFixturesView();
+    debugStatus(`"${team}" erfolgreich gespeichert. ${preview.length} Spiel(e) als Vorschau geladen.`);
+  }
+}
+
+function fixtureKey(f) {
+  return `${f.homeTeam}|${f.awayTeam}|${f.kickoffUtc}`;
+}
+
+function mergeFixtures(newFixtures) {
+  const existingKeys = new Set(rawFixtures.map(fixtureKey));
+  for (const f of newFixtures) {
+    if (!existingKeys.has(fixtureKey(f))) {
+      rawFixtures.push(f);
+      existingKeys.add(fixtureKey(f));
+    }
+  }
+  rawFixtures.sort((a, b) => (a.kickoffUtc || "").localeCompare(b.kickoffUtc || ""));
 }
 
 // Speichert immer genau das, was eingetippt wurde, wenn per Button/Enter

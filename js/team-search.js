@@ -51,3 +51,36 @@ export async function searchTeams(query) {
   // Fallback: weltweite Abdeckung ausserhalb der grossen Ligen.
   return searchTsdb(q);
 }
+
+// Sofort-Vorschau der naechsten Spiele eines einzelnen, gerade erst
+// hinzugefuegten Vereins - direkt im Browser ueber TheSportsDB (oeffentlicher
+// Test-Key, kein Secret noetig). Liefert Daten im selben Format wie
+// data/fixtures.json, damit sie sich nahtlos in die Anzeige einmischen
+// lassen. Der taegliche Server-Abruf (football-data.org) ersetzt diese
+// Vorschau spaetestens am naechsten Tag durch die zuverlaessigeren Daten.
+export async function fetchTeamFixturesPreview(teamName) {
+  try {
+    const searchResp = await fetch(`${TSDB_BASE}/searchteams.php?t=${encodeURIComponent(teamName)}`);
+    if (!searchResp.ok) return [];
+    const searchData = await searchResp.json();
+    const team = (searchData.teams || [])[0];
+    if (!team) return [];
+
+    const evResp = await fetch(`${TSDB_BASE}/eventsnext.php?id=${team.idTeam}`);
+    if (!evResp.ok) return [];
+    const evData = await evResp.json();
+    const events = evData.events || [];
+
+    return events
+      .map((e) => ({
+        homeTeam: e.strHomeTeam,
+        awayTeam: e.strAwayTeam,
+        kickoffUtc: e.dateEvent ? `${e.dateEvent}T${e.strTime || "00:00:00"}Z` : null,
+        competition: e.strLeague || "Vorschau",
+        venue: e.strVenue || null,
+      }))
+      .filter((f) => f.kickoffUtc);
+  } catch {
+    return [];
+  }
+}
