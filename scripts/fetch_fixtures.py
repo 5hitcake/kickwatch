@@ -13,9 +13,10 @@ Pro Verein wird zuerst football-data.org versucht; nur wenn der Verein dort
 in keinem der bekannten Wettbewerbe gefunden wird, springt der Fallback auf
 TheSportsDB ein. So gibt es keine doppelten Eintraege aus beiden Quellen.
 
-Testphase: TEAMS ist eine feste Liste. Sobald Nutzerprofile (Firebase)
-existieren, wird sie durch die tatsaechlich von Nutzern favorisierten
-Vereine ersetzt.
+Die Liste der Vereine kommt aus den tatsaechlich von Nutzern gespeicherten
+Lieblingsvereinen (siehe firestore_favorites.py), mit Fallback auf eine
+Standardliste, falls Firestore nicht erreichbar ist oder noch niemand
+Favoriten gespeichert hat.
 """
 
 import json
@@ -26,9 +27,7 @@ from pathlib import Path
 
 import requests
 
-TEAMS = [
-    "VfB Stuttgart",
-]
+from firestore_favorites import get_favorite_teams
 
 NEXT_N_FIXTURES = 5
 OUTPUT_FILE = Path(__file__).resolve().parent.parent / "data" / "fixtures.json"
@@ -158,9 +157,10 @@ def fetch_team_fixtures(team_name: str, fd_api_key: str | None) -> list:
 
 def main():
     fd_api_key = os.environ.get("FOOTBALL_DATA_API_KEY")
+    teams = get_favorite_teams()
 
     all_fixtures = []
-    for team_name in TEAMS:
+    for team_name in teams:
         all_fixtures.extend(fetch_team_fixtures(team_name, fd_api_key))
 
     all_fixtures = [f for f in all_fixtures if f.get("kickoffUtc")]
