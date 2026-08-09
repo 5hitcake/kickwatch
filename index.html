@@ -13,18 +13,63 @@
 <body>
   <header>
     <h1>Kick<span>Watch</span></h1>
-    <button class="secondary" id="login-btn" type="button">Anmelden</button>
+    <button class="secondary" id="logout-btn" type="button" hidden>Abmelden</button>
   </header>
 
   <main>
-    <div id="fixtures-list">
-      <div class="empty-state">
-        <p>Noch keine Lieblingsvereine ausgewählt.</p>
-        <p>Login und Vereinsauswahl folgen im nächsten Schritt.</p>
+    <!-- Login-Ansicht: sichtbar, solange niemand angemeldet ist -->
+    <section id="auth-screen">
+      <div class="card">
+        <p class="club">Anmelden, um deine Lieblingsvereine zu speichern</p>
+        <p class="meta">Wähle Google oder melde dich per E-Mail-Link an (kein Passwort nötig).</p>
+
+        <button type="button" id="google-signin-btn" style="margin-top: 1rem;">Mit Google anmelden</button>
+
+        <form id="email-signin-form" style="margin-top: 1.5rem;">
+          <input
+            type="email"
+            id="email-signin-input"
+            placeholder="deine@email.de"
+            required
+            style="width: 100%; padding: 0.6rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); margin-bottom: 0.5rem;"
+          />
+          <button type="submit" class="secondary">Anmeldelink per E-Mail senden</button>
+        </form>
+        <p class="meta" id="email-signin-status"></p>
       </div>
-    </div>
+    </section>
+
+    <!-- App-Ansicht: sichtbar nach Login -->
+    <section id="app-screen" hidden>
+      <p class="meta">Angemeldet als <span id="user-email"></span></p>
+
+      <div class="card">
+        <p class="club">Deine Lieblingsvereine</p>
+        <div id="favorites-list"></div>
+        <form id="add-favorite-form" style="margin-top: 0.75rem; display: flex; gap: 0.5rem;">
+          <input
+            type="text"
+            id="add-favorite-input"
+            placeholder="Vereinsname, z. B. VfB Stuttgart"
+            style="flex: 1; padding: 0.6rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text);"
+          />
+          <button type="submit">Hinzufügen</button>
+        </form>
+      </div>
+
+      <p class="meta">
+        Hinweis: Der Spielplan unten zeigt aktuell nur Testdaten (VfB Stuttgart) –
+        der automatische Abruf für alle gespeicherten Vereine folgt im nächsten Schritt.
+      </p>
+
+      <div id="fixtures-list">
+        <div class="empty-state">
+          <p>Lade Spiele...</p>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <script src="js/app.js"></script>
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>
