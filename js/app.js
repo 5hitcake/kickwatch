@@ -1,5 +1,6 @@
 import { initAuthUI } from "./auth.js";
 import { loadFavoriteTeams, saveFavoriteTeams } from "./favorites.js";
+import { searchTeams } from "./team-search.js";
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
@@ -19,6 +20,7 @@ const userEmailLabel = document.getElementById("user-email");
 const favoritesList = document.getElementById("favorites-list");
 const addFavoriteForm = document.getElementById("add-favorite-form");
 const addFavoriteInput = document.getElementById("add-favorite-input");
+const favoriteSuggestions = document.getElementById("favorite-suggestions");
 
 async function onLogin(user) {
   currentUid = user.uid;
@@ -65,14 +67,63 @@ function renderFavorites() {
   });
 }
 
-addFavoriteForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const team = addFavoriteInput.value.trim();
+async function addFavorite(team) {
   if (!team || favoriteTeams.includes(team)) return;
   favoriteTeams.push(team);
   addFavoriteInput.value = "";
+  hideSuggestions();
   renderFavorites();
   await saveFavoriteTeams(currentUid, favoriteTeams);
+}
+
+addFavoriteForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  await addFavorite(addFavoriteInput.value.trim());
+});
+
+function hideSuggestions() {
+  favoriteSuggestions.hidden = true;
+  favoriteSuggestions.innerHTML = "";
+}
+
+function renderSuggestions(teams) {
+  if (!teams.length) {
+    hideSuggestions();
+    return;
+  }
+  favoriteSuggestions.innerHTML = teams
+    .map(
+      (t) => `
+      <button type="button" class="suggestion-item" data-name="${t.name}">
+        ${t.name}
+        <div class="suggestion-meta">${[t.league, t.country].filter(Boolean).join(" · ")}</div>
+      </button>`
+    )
+    .join("");
+  favoriteSuggestions.hidden = false;
+
+  favoriteSuggestions.querySelectorAll(".suggestion-item").forEach((btn) => {
+    // mousedown statt click, damit es vor dem blur-Event des Inputs feuert
+    btn.addEventListener("mousedown", (event) => {
+      event.preventDefault();
+      addFavorite(btn.dataset.name);
+    });
+  });
+}
+
+let searchDebounce;
+addFavoriteInput.addEventListener("input", () => {
+  clearTimeout(searchDebounce);
+  const query = addFavoriteInput.value;
+  searchDebounce = setTimeout(async () => {
+    const teams = await searchTeams(query);
+    renderSuggestions(teams);
+  }, 300);
+});
+
+addFavoriteInput.addEventListener("blur", () => {
+  // kurze Verzoegerung, damit ein Klick auf einen Vorschlag noch ankommt
+  setTimeout(hideSuggestions, 150);
 });
 
 async function loadFixtures() {

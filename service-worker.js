@@ -1,4 +1,4 @@
-const CACHE_NAME = "kickwatch-shell-v3";
+const CACHE_NAME = "kickwatch-shell-v4";
 const SHELL_FILES = [
   "./",
   "index.html",
@@ -7,6 +7,7 @@ const SHELL_FILES = [
   "js/app.js",
   "js/auth.js",
   "js/favorites.js",
+  "js/team-search.js",
   "js/firebase-config.js",
   "js/firebase-init.js",
   "icons/icon.svg",
