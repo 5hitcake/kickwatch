@@ -59,6 +59,7 @@ function renderFavorites() {
     .map(
       (team, i) => `
       <span class="chip">
+        <span class="chip-check" aria-hidden="true">&#10003;</span>
         ${team}
         <button type="button" class="chip-remove" data-index="${i}" aria-label="Entfernen">&times;</button>
       </span>`

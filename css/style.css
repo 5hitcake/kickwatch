@@ -87,12 +87,17 @@ button.secondary {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: var(--bg);
-  border: 1px solid var(--border);
+  background: rgba(61, 220, 151, 0.1);
+  border: 1px solid var(--accent);
   border-radius: 999px;
   padding: 0.35rem 0.5rem 0.35rem 0.75rem;
   margin: 0 0.4rem 0.4rem 0;
   font-size: 0.9rem;
+}
+
+.chip-check {
+  color: var(--accent);
+  font-weight: 700;
 }
 
 .chip-remove {
