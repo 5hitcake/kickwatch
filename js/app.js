@@ -59,9 +59,23 @@ async function onLogin(user) {
 function onLogout() {
   currentUid = null;
   favoriteTeams = [];
+  rawFixtures = [];
+  activeFilterTeam = null;
   authScreen.hidden = false;
   appScreen.hidden = true;
   logoutBtn.hidden = true;
+
+  // Zustand des vorherigen Kontos nicht stehen lassen - sonst sieht ein
+  // zweites Konto auf demselben Geraet sonst kurz den alten Kalender-Link
+  // oder Debug-Text, bevor es selbst etwas hinzufuegt.
+  hideSuggestions();
+  addFavoriteInput.value = "";
+  debugStatus("");
+  calendarLinkBox.hidden = true;
+  calendarLinkInput.value = "";
+  calendarGoogleLink.href = "#";
+  calendarWebcalLink.href = "#";
+  calendarCopyStatus.textContent = "";
 }
 
 function renderFavorites() {
@@ -97,7 +111,7 @@ async function addFavorite(team) {
     debugStatus("Abgebrochen: leerer Name");
     return;
   }
-  if (favoriteTeams.includes(team)) {
+  if (favoriteTeams.some((t) => normalizeTeamName(t) === normalizeTeamName(team))) {
     debugStatus(`Abgebrochen: "${team}" ist bereits in der Liste`);
     return;
   }
@@ -360,7 +374,7 @@ calendarLinkBtn.addEventListener("click", async () => {
     calendarCopyStatus.textContent = "";
   } finally {
     calendarLinkBtn.disabled = false;
-    calendarLinkBtn.textContent = "Kalender-Link anzeigen";
+    calendarLinkBtn.textContent = "Zum Kalender hinzufügen";
   }
 });
 
