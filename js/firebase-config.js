@@ -12,4 +12,4 @@ export const firebaseConfig = {
 // Oeffentlicher VAPID-Schluessel fuer Web Push (Firebase Cloud Messaging) -
 // aus der Firebase-Konsole unter Projekteinstellungen > Cloud Messaging >
 // Web-Push-Zertifikate. Auch dieser Wert ist oeffentlich (kein Geheimnis).
-export const vapidKey = "REPLACE_ME_VAPID_KEY";
+export const vapidKey = "BISLHOgJh_TMfiK3ZWUrqJzlTUPgGef64VZNlGM0apkBG37VSucKXBwpXLZdXrqejWuXF1Yk5wM5Zt4vTObLDYg";
