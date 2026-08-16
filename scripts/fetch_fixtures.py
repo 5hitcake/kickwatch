@@ -158,25 +158,37 @@ def to_fixture_dict_tsdb(event: dict) -> dict:
 
 
 def fetch_team_fixtures(team_name: str, fd_api_key: str | None, fd_index: list) -> list:
+    fixtures = []
+    fd_found = False
+
     if fd_api_key:
         fd_team_id, fd_team_name = find_team_in_index(team_name, fd_index)
         if fd_team_id:
+            fd_found = True
             print(f"[INFO] '{team_name}' -> football-data.org: {fd_team_name} (ID {fd_team_id})")
             matches = fetch_football_data_fixtures(fd_team_id, fd_api_key)
             print(f"[INFO] {team_name}: {len(matches)} kommende Spiele (football-data.org)")
-            return [to_fixture_dict_fd(m) for m in matches]
-        print(f"[INFO] '{team_name}' in keinem football-data.org Top-Wettbewerb gefunden, Fallback auf TheSportsDB")
+            fixtures.extend(to_fixture_dict_fd(m) for m in matches)
+        else:
+            print(f"[INFO] '{team_name}' in keinem football-data.org Top-Wettbewerb gefunden")
     else:
         print("[WARN] Kein FOOTBALL_DATA_API_KEY gesetzt, nutze nur TheSportsDB", file=sys.stderr)
 
+    # TheSportsDB immer zusaetzlich abfragen, nicht nur als Fallback wenn
+    # football-data.org den Verein gar nicht kennt: der Free-Tier von
+    # football-data.org deckt z.B. keine Pokalwettbewerbe (DFB-Pokal etc.)
+    # ab, TheSportsDB hat solche Spiele oft trotzdem. dedupe_fixtures()
+    # entfernt danach ueberschneidende Eintraege aus beiden Quellen.
     tsdb_id, tsdb_name = find_team_id_tsdb(team_name)
-    if tsdb_id is None:
+    if tsdb_id is not None:
+        print(f"[INFO] '{team_name}' -> TheSportsDB (zusaetzlich): {tsdb_name} (ID {tsdb_id})")
+        events = fetch_tsdb_fixtures(tsdb_id)
+        print(f"[INFO] {team_name}: {len(events)} weitere Spiele via TheSportsDB")
+        fixtures.extend(to_fixture_dict_tsdb(e) for e in events)
+    elif not fd_found:
         print(f"[WARN] Kein Team gefunden fuer '{team_name}'", file=sys.stderr)
-        return []
-    print(f"[INFO] '{team_name}' -> TheSportsDB: {tsdb_name} (ID {tsdb_id})")
-    events = fetch_tsdb_fixtures(tsdb_id)
-    print(f"[INFO] {team_name}: {len(events)} kommende Spiele (TheSportsDB)")
-    return [to_fixture_dict_tsdb(e) for e in events]
+
+    return fixtures
 
 
 def dedupe_fixtures(fixtures: list) -> list:
