@@ -1,14 +1,32 @@
 import { initAuthUI } from "./auth.js";
-import { loadFavoriteTeams, saveFavoriteTeams, ensureCalendarToken } from "./favorites.js";
+import { loadFavoriteTeams, saveFavoriteTeams, ensureCalendarToken, enableMatchReminders } from "./favorites.js";
 import { searchTeams, fetchTeamFixturesPreview } from "./team-search.js";
+import { messagingSupportedPromise, getMessagingInstance, onMessage } from "./firebase-init.js";
 
+let swRegistration = null;
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("service-worker.js").catch((err) => {
+  window.addEventListener("load", async () => {
+    try {
+      swRegistration = await navigator.serviceWorker.register("service-worker.js");
+    } catch (err) {
       console.warn("Service worker registration failed:", err);
-    });
+    }
   });
 }
+
+// Wenn die App gerade offen/im Vordergrund ist, kommen Push-Nachrichten
+// nicht automatisch als System-Benachrichtigung an (das macht der Service
+// Worker nur im Hintergrund) - hier stattdessen selbst anzeigen.
+messagingSupportedPromise.then((supported) => {
+  if (!supported) return;
+  onMessage(getMessagingInstance(), (payload) => {
+    const title = (payload.notification && payload.notification.title) || "KickWatch";
+    const body = (payload.notification && payload.notification.body) || "";
+    if (Notification.permission === "granted") {
+      new Notification(title, { body, icon: "icons/icon.svg" });
+    }
+  });
+});
 
 let currentUid = null;
 let favoriteTeams = [];
@@ -35,6 +53,8 @@ const calendarWebcalLink = document.getElementById("calendar-webcal-link");
 const calendarLinkInput = document.getElementById("calendar-link-input");
 const calendarCopyBtn = document.getElementById("calendar-copy-btn");
 const calendarCopyStatus = document.getElementById("calendar-copy-status");
+const remindersBtn = document.getElementById("reminders-btn");
+const remindersStatus = document.getElementById("reminders-status");
 
 // Zeigt den aktuellen Schritt direkt auf der Seite an (kein Entwicklertools
 // noetig, um auf dem Handy nachzuvollziehen, was das Skript gerade tut).
@@ -76,6 +96,7 @@ function onLogout() {
   calendarGoogleLink.href = "#";
   calendarWebcalLink.href = "#";
   calendarCopyStatus.textContent = "";
+  remindersStatus.textContent = "";
 }
 
 function renderFavorites() {
@@ -385,6 +406,19 @@ calendarCopyBtn.addEventListener("click", async () => {
   } catch {
     calendarLinkInput.select();
     calendarCopyStatus.textContent = "Bitte manuell kopieren (Text ist markiert).";
+  }
+});
+
+remindersBtn.addEventListener("click", async () => {
+  remindersBtn.disabled = true;
+  remindersStatus.textContent = "";
+  try {
+    await enableMatchReminders(currentUid, swRegistration);
+    remindersStatus.textContent = "Erinnerungen aktiviert - du bekommst ca. 60 Minuten vor Anstoss eine Benachrichtigung.";
+  } catch (err) {
+    remindersStatus.textContent = `Fehler: ${err.message}`;
+  } finally {
+    remindersBtn.disabled = false;
   }
 });
 
