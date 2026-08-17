@@ -1,12 +1,5 @@
 [
   {
-    "homeTeam": "Preußen Münster",
-    "awayTeam": "Karlsruhe",
-    "kickoffUtc": "2026-08-21T16:00:00Z",
-    "competition": "DFB-Pokal",
-    "venue": "Preußenstadion"
-  },
-  {
     "homeTeam": "Hansa Rostock",
     "awayTeam": "Stuttgart",
     "kickoffUtc": "2026-08-21T18:45:00Z",
@@ -40,6 +33,13 @@
     "kickoffUtc": "2026-09-19T16:30:00Z",
     "competition": "Bundesliga",
     "venue": null
+  },
+  {
+    "homeTeam": "Netherlands",
+    "awayTeam": "Germany",
+    "kickoffUtc": "2026-09-24T18:45:00Z",
+    "competition": "UEFA Nations League",
+    "venue": ""
   },
   {
     "homeTeam": "SC Paderborn 07",
