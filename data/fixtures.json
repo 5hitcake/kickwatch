@@ -1,17 +1,17 @@
 [
   {
-    "homeTeam": "Hansa Rostock",
-    "awayTeam": "Stuttgart",
-    "kickoffUtc": "2026-08-21T18:45:00Z",
-    "competition": "DFB-Pokal",
-    "venue": "Ostseestadion"
-  },
-  {
     "homeTeam": "FC Bayern München",
     "awayTeam": "VfB Stuttgart",
     "kickoffUtc": "2026-08-28T18:30:00Z",
     "competition": "Bundesliga",
     "venue": null
+  },
+  {
+    "homeTeam": "Bayern Munich",
+    "awayTeam": "Stuttgart",
+    "kickoffUtc": "2026-08-28T18:30:00Z",
+    "competition": "German Bundesliga",
+    "venue": "Allianz Arena"
   },
   {
     "homeTeam": "VfB Stuttgart",
