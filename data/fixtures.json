@@ -35,6 +35,13 @@
     "venue": null
   },
   {
+    "homeTeam": "Netherlands",
+    "awayTeam": "Germany",
+    "kickoffUtc": "2026-09-24T18:45:00Z",
+    "competition": "UEFA Nations League",
+    "venue": ""
+  },
+  {
     "homeTeam": "SC Paderborn 07",
     "awayTeam": "VfB Stuttgart",
     "kickoffUtc": "2026-10-10T00:00:00Z",
