@@ -1,24 +1,17 @@
 [
   {
-    "homeTeam": "FC Bayern München",
-    "awayTeam": "VfB Stuttgart",
-    "kickoffUtc": "2026-08-28T18:30:00Z",
-    "competition": "Bundesliga",
-    "venue": null
-  },
-  {
-    "homeTeam": "Bayern Munich",
-    "awayTeam": "Stuttgart",
-    "kickoffUtc": "2026-08-28T18:30:00Z",
-    "competition": "German Bundesliga",
-    "venue": "Allianz Arena"
-  },
-  {
     "homeTeam": "VfB Stuttgart",
     "awayTeam": "1. FC Köln",
     "kickoffUtc": "2026-09-04T18:30:00Z",
     "competition": "Bundesliga",
     "venue": null
+  },
+  {
+    "homeTeam": "Stuttgart",
+    "awayTeam": "Köln",
+    "kickoffUtc": "2026-09-04T18:30:00Z",
+    "competition": "German Bundesliga",
+    "venue": "MHP Arena"
   },
   {
     "homeTeam": "TSG 1899 Hoffenheim",
@@ -45,6 +38,13 @@
     "homeTeam": "SC Paderborn 07",
     "awayTeam": "VfB Stuttgart",
     "kickoffUtc": "2026-10-10T00:00:00Z",
+    "competition": "Bundesliga",
+    "venue": null
+  },
+  {
+    "homeTeam": "Hamburger SV",
+    "awayTeam": "VfB Stuttgart",
+    "kickoffUtc": "2026-10-17T00:00:00Z",
     "competition": "Bundesliga",
     "venue": null
   }
