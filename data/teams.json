@@ -75,13 +75,13 @@
     "name": "AS Monaco FC",
     "shortName": "Monaco",
     "country": "Monaco",
-    "competition": "UEFA Champions League"
+    "competition": "Ligue 1"
   },
   {
     "name": "AS Roma",
     "shortName": "Roma",
     "country": "Italy",
-    "competition": "Serie A"
+    "competition": "UEFA Champions League"
   },
   {
     "name": "AZ",
@@ -111,19 +111,19 @@
     "name": "Aston Villa FC",
     "shortName": "Aston Villa",
     "country": "England",
-    "competition": "Premier League"
+    "competition": "UEFA Champions League"
   },
   {
     "name": "Atalanta BC",
     "shortName": "Atalanta",
     "country": "Italy",
-    "competition": "UEFA Champions League"
+    "competition": "Serie A"
   },
   {
     "name": "Athletic Club",
     "shortName": "Athletic",
     "country": "Spain",
-    "competition": "UEFA Champions League"
+    "competition": "Primera Division"
   },
   {
     "name": "Barcelona SC",
@@ -135,7 +135,7 @@
     "name": "Bayer 04 Leverkusen",
     "shortName": "Leverkusen",
     "country": "Germany",
-    "competition": "UEFA Champions League"
+    "competition": "Bundesliga"
   },
   {
     "name": "Birmingham City FC",
@@ -381,7 +381,7 @@
     "name": "Chelsea FC",
     "shortName": "Chelsea",
     "country": "England",
-    "competition": "UEFA Champions League"
+    "competition": "Premier League"
   },
   {
     "name": "Club Alianza Lima",
@@ -465,7 +465,7 @@
     "name": "Como 1907",
     "shortName": "Como 1907",
     "country": "Italy",
-    "competition": "Serie A"
+    "competition": "UEFA Champions League"
   },
   {
     "name": "Coritiba FBC",
@@ -543,7 +543,7 @@
     "name": "Eintracht Frankfurt",
     "shortName": "Frankfurt",
     "country": "Germany",
-    "competition": "UEFA Champions League"
+    "competition": "Bundesliga"
   },
   {
     "name": "Elche CF",
@@ -612,12 +612,6 @@
     "competition": "UEFA Champions League"
   },
   {
-    "name": "FC København",
-    "shortName": "København",
-    "country": "Denmark",
-    "competition": "UEFA Champions League"
-  },
-  {
     "name": "FC Lorient",
     "shortName": "Lorient",
     "country": "France",
@@ -654,9 +648,15 @@
     "competition": "UEFA Champions League"
   },
   {
-    "name": "FK Kairat",
-    "shortName": "FK Kairat",
-    "country": "Kazakhstan",
+    "name": "FK Shakhtar Donetsk",
+    "shortName": "Shaktar",
+    "country": "Ukraine",
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Fenerbahçe SK",
+    "shortName": "Fenerbahçe",
+    "country": "Turkey",
     "competition": "UEFA Champions League"
   },
   {
@@ -765,6 +765,12 @@
     "name": "Juventus FC",
     "shortName": "Juventus",
     "country": "Italy",
+    "competition": "Serie A"
+  },
+  {
+    "name": "LASK Linz",
+    "shortName": "LASK",
+    "country": "Austria",
     "competition": "UEFA Champions League"
   },
   {
@@ -801,7 +807,7 @@
     "name": "Lille OSC",
     "shortName": "Lille",
     "country": "France",
-    "competition": "Ligue 1"
+    "competition": "UEFA Champions League"
   },
   {
     "name": "Lincoln City FC",
@@ -831,7 +837,7 @@
     "name": "Manchester United FC",
     "shortName": "Man United",
     "country": "England",
-    "competition": "Premier League"
+    "competition": "UEFA Champions League"
   },
   {
     "name": "Middlesbrough FC",
@@ -873,7 +879,7 @@
     "name": "Newcastle United FC",
     "shortName": "Newcastle",
     "country": "England",
-    "competition": "UEFA Champions League"
+    "competition": "Premier League"
   },
   {
     "name": "Norwich City FC",
@@ -909,11 +915,11 @@
     "name": "Olympique de Marseille",
     "shortName": "Marseille",
     "country": "France",
-    "competition": "UEFA Champions League"
+    "competition": "Ligue 1"
   },
   {
-    "name": "PAE Olympiakos SFP",
-    "shortName": "Olympiakos",
+    "name": "PAE AEK",
+    "shortName": "PAE AEK",
     "country": "Greece",
     "competition": "UEFA Champions League"
   },
@@ -928,12 +934,6 @@
     "shortName": "PSV",
     "country": "Netherlands",
     "competition": "Eredivisie"
-  },
-  {
-    "name": "Paphos FC",
-    "shortName": "Paphos FC",
-    "country": "Cyprus",
-    "competition": "UEFA Champions League"
   },
   {
     "name": "Paris FC",
@@ -966,12 +966,6 @@
     "competition": "Championship"
   },
   {
-    "name": "Qarabağ Ağdam FK",
-    "shortName": "Qarabağ Ağdam",
-    "country": "Azerbaijan",
-    "competition": "UEFA Champions League"
-  },
-  {
     "name": "Queens Park Rangers FC",
     "shortName": "QPR",
     "country": "England",
@@ -987,7 +981,7 @@
     "name": "RB Leipzig",
     "shortName": "RB Leipzig",
     "country": "Germany",
-    "competition": "Bundesliga"
+    "competition": "UEFA Champions League"
   },
   {
     "name": "RC Celta de Vigo",
@@ -1017,7 +1011,7 @@
     "name": "Racing Club de Lens",
     "shortName": "RC Lens",
     "country": "France",
-    "competition": "Ligue 1"
+    "competition": "UEFA Champions League"
   },
   {
     "name": "Rayo Vallecano de Madrid",
@@ -1029,7 +1023,7 @@
     "name": "Real Betis Balompié",
     "shortName": "Real Betis",
     "country": "Spain",
-    "competition": "Primera Division"
+    "competition": "UEFA Champions League"
   },
   {
     "name": "Real Madrid CF",
@@ -1054,12 +1048,6 @@
     "shortName": "Rio Ave",
     "country": "Portugal",
     "competition": "Primeira Liga"
-  },
-  {
-    "name": "Royale Union Saint-Gilloise",
-    "shortName": "Union SG",
-    "country": "Belgium",
-    "competition": "UEFA Champions League"
   },
   {
     "name": "SBV Excelsior",
@@ -1138,6 +1126,12 @@
     "shortName": "Bremen",
     "country": "Germany",
     "competition": "Bundesliga"
+  },
+  {
+    "name": "Sabah FK",
+    "shortName": "Sabah FK",
+    "country": "Azerbaijan",
+    "competition": "UEFA Champions League"
   },
   {
     "name": "Santos FC",
@@ -1245,7 +1239,7 @@
     "name": "Tottenham Hotspur FC",
     "shortName": "Tottenham",
     "country": "England",
-    "competition": "UEFA Champions League"
+    "competition": "Premier League"
   },
   {
     "name": "Toulouse FC",
@@ -1299,7 +1293,13 @@
     "name": "VfB Stuttgart",
     "shortName": "Stuttgart",
     "country": "Germany",
-    "competition": "Bundesliga"
+    "competition": "UEFA Champions League"
+  },
+  {
+    "name": "Viking FK",
+    "shortName": "Viking",
+    "country": "Norway",
+    "competition": "UEFA Champions League"
   },
   {
     "name": "Villarreal CF",
@@ -1348,5 +1348,11 @@
     "shortName": "Wrexham",
     "country": "Wales",
     "competition": "Championship"
+  },
+  {
+    "name": "ŠK Slovan Bratislava",
+    "shortName": "Sl. Bratislava",
+    "country": "Slovakia",
+    "competition": "UEFA Champions League"
   }
 ]
