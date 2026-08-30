@@ -2,6 +2,7 @@ import { initAuthUI } from "./auth.js";
 import { loadFavoriteTeams, saveFavoriteTeams, ensureCalendarToken, enableMatchReminders } from "./favorites.js";
 import { searchTeams, fetchTeamFixturesPreview } from "./team-search.js";
 import { messagingSupportedPromise, getMessagingInstance, onMessage } from "./firebase-init.js";
+import { getBroadcasterInfo } from "./broadcasters.js";
 
 let swRegistration = null;
 if ("serviceWorker" in navigator) {
@@ -366,13 +367,15 @@ function renderFixtures(fixtures) {
   }
 
   container.innerHTML = fixtures
-    .map(
-      (f) => `
+    .map((f) => {
+      const broadcaster = getBroadcasterInfo(f.competition);
+      return `
       <div class="card">
         <div class="club">${f.homeTeam} - ${f.awayTeam}</div>
         <div class="meta">${formatKickoff(f.kickoffUtc)} (deine Zeitzone) - ${f.competition}</div>
-      </div>`
-    )
+        ${broadcaster ? `<div class="meta broadcaster">📺 ${broadcaster}</div>` : ""}
+      </div>`;
+    })
     .join("");
 }
 

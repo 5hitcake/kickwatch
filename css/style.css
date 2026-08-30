@@ -60,6 +60,10 @@ main {
   margin-top: 0.25rem;
 }
 
+.card .meta.broadcaster {
+  color: var(--accent);
+}
+
 .empty-state {
   text-align: center;
   color: var(--text-muted);

@@ -28,7 +28,7 @@ messaging.onBackgroundMessage((payload) => {
   });
 });
 
-const CACHE_NAME = "kickwatch-shell-v20";
+const CACHE_NAME = "kickwatch-shell-v21";
 const SHELL_FILES = [
   "./",
   "index.html",
@@ -38,6 +38,7 @@ const SHELL_FILES = [
   "js/auth.js",
   "js/favorites.js",
   "js/team-search.js",
+  "js/broadcasters.js",
   "js/firebase-config.js",
   "js/firebase-init.js",
   "icons/icon.svg",
