@@ -1,24 +1,17 @@
 [
   {
     "homeTeam": "VfB Stuttgart",
-    "awayTeam": "1. FC Köln",
-    "kickoffUtc": "2026-09-04T18:30:00Z",
-    "competition": "Bundesliga",
-    "venue": null
-  },
-  {
-    "homeTeam": "Stuttgart",
-    "awayTeam": "Köln",
-    "kickoffUtc": "2026-09-04T18:30:00Z",
-    "competition": "German Bundesliga",
-    "venue": "MHP Arena"
-  },
-  {
-    "homeTeam": "VfB Stuttgart",
     "awayTeam": "Viking FK",
     "kickoffUtc": "2026-09-09T16:45:00Z",
     "competition": "UEFA Champions League",
     "venue": null
+  },
+  {
+    "homeTeam": "Stuttgart",
+    "awayTeam": "Viking",
+    "kickoffUtc": "2026-09-09T16:45:00Z",
+    "competition": "UEFA Champions League",
+    "venue": "MHP Arena"
   },
   {
     "homeTeam": "TSG 1899 Hoffenheim",
@@ -46,6 +39,13 @@
     "awayTeam": "VfB Stuttgart",
     "kickoffUtc": "2026-10-10T00:00:00Z",
     "competition": "Bundesliga",
+    "venue": null
+  },
+  {
+    "homeTeam": "ŠK Slovan Bratislava",
+    "awayTeam": "VfB Stuttgart",
+    "kickoffUtc": "2026-10-14T19:00:00Z",
+    "competition": "UEFA Champions League",
     "venue": null
   }
 ]
