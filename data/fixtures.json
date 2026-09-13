@@ -1,19 +1,5 @@
 [
   {
-    "homeTeam": "TSG 1899 Hoffenheim",
-    "awayTeam": "VfB Stuttgart",
-    "kickoffUtc": "2026-09-12T13:30:00Z",
-    "competition": "Bundesliga",
-    "venue": null
-  },
-  {
-    "homeTeam": "Hoffenheim",
-    "awayTeam": "Stuttgart",
-    "kickoffUtc": "2026-09-12T13:30:00Z",
-    "competition": "German Bundesliga",
-    "venue": "PreZero Arena"
-  },
-  {
     "homeTeam": "VfB Stuttgart",
     "awayTeam": "Borussia Dortmund",
     "kickoffUtc": "2026-09-19T16:30:00Z",
@@ -46,6 +32,13 @@
     "awayTeam": "VfB Stuttgart",
     "kickoffUtc": "2026-10-17T13:30:00Z",
     "competition": "Bundesliga",
+    "venue": null
+  },
+  {
+    "homeTeam": "VfB Stuttgart",
+    "awayTeam": "Club Atlético de Madrid",
+    "kickoffUtc": "2026-10-20T19:00:00Z",
+    "competition": "UEFA Champions League",
     "venue": null
   }
 ]
